@@ -1,0 +1,5182 @@
+{
+  "project_configuration": {
+    "collection_metadata": {
+      "timestamp": "2025-09-08T17:39:30.525190",
+      "collector_version": "Superior_v1.0",
+      "purpose": "IEEE_paper_comprehensive_data"
+    },
+    "project_configuration": {
+      "data_path": "C:/datasets",
+      "train_file": "Question Answer Classification Dataset 3[Training].csv",
+      "test_file": "[Updated] Question Answer Classification Dataset[Test].csv",
+      "max_vocab_size": 20000,
+      "max_sequence_length": 128,
+      "batch_size": 256,
+      "embedding_dim": 100,
+      "learning_rate": 2e-05,
+      "num_epochs": 15,
+      "sample_ratio": 1,
+      "use_full_dataset": true,
+      "n_jobs": 8,
+      "cv_folds": 3,
+      "random_seed": 42,
+      "device": "cuda",
+      "has_gpu": true,
+      "package_availability": {
+        "has_sklearn": true,
+        "has_optuna": true,
+        "has_seaborn": true,
+        "has_plotly": true
+      }
+    },
+    "system_specifications": {
+      "cpu": "AMD Ryzen 7 7700",
+      "cpu_cores": 8,
+      "cpu_threads": 16,
+      "ram_total": "16 GB",
+      "gpu_model": "RTX 3060",
+      "gpu_memory": "12 GB",
+      "operating_system": "Windows/Linux",
+      "framework_primary": "PyTorch",
+      "gpu_optimization": "Enabled"
+    },
+    "software_environment": {
+      "python_version": "3.13.1 (tags/v3.13.1:0671451, Dec  3 2024, 19:06:28) [MSC v.1942 64 bit (AMD64)]",
+      "pytorch_version": "2.7.1+cu118",
+      "pandas_version": "2.3.2",
+      "numpy_version": "2.3.2",
+      "cuda_available": true,
+      "cuda_version": "11.8"
+    },
+    "hardware_optimization": {
+      "memory_optimization": "Sparse matrices, chunk processing",
+      "gpu_acceleration": "PyTorch CUDA, mixed precision (FP16)",
+      "cpu_parallelization": "Full core utilization (8 cores)",
+      "memory_management": "Aggressive cleanup, memory monitoring",
+      "batch_size_scaling": "Dynamic based on available memory",
+      "optimization_techniques": [
+        "Sparse matrix operations",
+        "Memory-efficient data loaders",
+        "GPU tensor operations",
+        "Gradient accumulation",
+        "Early stopping",
+        "Model checkpointing"
+      ]
+    }
+  },
+  "dataset_analysis": {
+    "basic_statistics": {
+      "train_samples": 279999,
+      "test_samples": 59999,
+      "total_samples": 339998,
+      "train_test_ratio": 0.8235313148900876,
+      "development_mode": true,
+      "sample_ratio_used": 0.02,
+      "estimated_full_dataset_size": 16999900,
+      "columns": [
+        "QA Text",
+        "Class"
+      ],
+      "train_memory_usage": "213677727",
+      "test_memory_usage": "45959339"
+    },
+    "class_distribution": {
+      "num_classes": 10,
+      "class_names": [
+        "Business & Finance",
+        "Computers & Internet",
+        "Education & Reference",
+        "Entertainment & Music",
+        "Family & Relationships",
+        "Health",
+        "Politics & Government",
+        "Science & Mathematics",
+        "Society & Culture",
+        "Sports"
+      ],
+      "train_distribution": {
+        "Business & Finance": 28158,
+        "Politics & Government": 28156,
+        "Education & Reference": 28092,
+        "Science & Mathematics": 28084,
+        "Family & Relationships": 28049,
+        "Entertainment & Music": 27999,
+        "Health": 27947,
+        "Society & Culture": 27931,
+        "Computers & Internet": 27826,
+        "Sports": 27757
+      },
+      "test_distribution": {
+        "Business & Finance": 6000,
+        "Computers & Internet": 6000,
+        "Education & Reference": 6000,
+        "Entertainment & Music": 6000,
+        "Health": 6000,
+        "Politics & Government": 6000,
+        "Society & Culture": 6000,
+        "Science & Mathematics": 6000,
+        "Sports": 6000,
+        "Family & Relationships": 5999
+      },
+      "class_balance_analysis": {
+        "most_frequent_class": "Business & Finance",
+        "least_frequent_class": "Sports",
+        "imbalance_ratio": 1.0144468062110459,
+        "entropy": 3.3219129826514546
+      }
+    },
+    "text_characteristics": {
+      "feature_statistics": {
+        "text_length": {
+          "mean": 566.6863917371134,
+          "std": 574.8234712876912,
+          "min": 59,
+          "max": 6917,
+          "median": 385.0,
+          "quartiles": {
+            "q25": 222.0,
+            "q75": 688.0
+          }
+        },
+        "word_count": {
+          "mean": 97.36449773034904,
+          "std": 98.22951325486738,
+          "min": 7,
+          "max": 1247,
+          "median": 66.0,
+          "quartiles": {
+            "q25": 37.0,
+            "q75": 120.0
+          }
+        },
+        "sentence_count": {
+          "mean": 8.434208693602477,
+          "std": 7.6559568317746685,
+          "min": 1,
+          "max": 651,
+          "median": 6.0,
+          "quartiles": {
+            "q25": 4.0,
+            "q75": 10.0
+          }
+        },
+        "avg_word_length": {
+          "mean": 4.988144928480335,
+          "std": 1.7000624134746853,
+          "min": 2.037142857142857,
+          "max": 304.38461538461536,
+          "median": 4.787234042553192,
+          "quartiles": {
+            "q25": 4.445783132530121,
+            "q75": 5.228571428571429
+          }
+        },
+        "vocabulary_richness": {
+          "mean": 0.7764132028617863,
+          "std": 0.11531478434730535,
+          "min": 0.022857142857142857,
+          "max": 0.9959349593495935,
+          "median": 0.7846153846153846,
+          "quartiles": {
+            "q25": 0.6945812807881774,
+            "q75": 0.8695652173913043
+          }
+        },
+        "punctuation_ratio": {
+          "mean": 0.04789274912271851,
+          "std": 0.027111794272561177,
+          "min": 0.001221597849987784,
+          "max": 0.9713522699684389,
+          "median": 0.04145077720207254,
+          "quartiles": {
+            "q25": 0.03220338983050847,
+            "q75": 0.05552358947653136
+          }
+        },
+        "question_marks": {
+          "mean": 1.9145318376137057,
+          "std": 5.244897070791932,
+          "min": 0,
+          "max": 2178,
+          "median": 1.0,
+          "quartiles": {
+            "q25": 1.0,
+            "q75": 2.0
+          }
+        }
+      },
+      "total_samples_analyzed": 279999
+    },
+    "linguistic_analysis": {
+      "vocabulary_statistics": {
+        "total_unique_words": 294835,
+        "total_word_occurrences": 14511767,
+        "vocabulary_diversity": 0.020316960711951895
+      },
+      "most_common_words": [
+        {
+          "word": "question",
+          "frequency": 585628
+        },
+        {
+          "word": "best",
+          "frequency": 310766
+        },
+        {
+          "word": "answer",
+          "frequency": 300953
+        },
+        {
+          "word": "title",
+          "frequency": 282392
+        },
+        {
+          "word": "content",
+          "frequency": 281898
+        },
+        {
+          "word": "like",
+          "frequency": 90380
+        },
+        {
+          "word": "get",
+          "frequency": 87850
+        },
+        {
+          "word": "would",
+          "frequency": 81529
+        },
+        {
+          "word": "one",
+          "frequency": 79111
+        },
+        {
+          "word": "know",
+          "frequency": 76266
+        },
+        {
+          "word": "think",
+          "frequency": 60346
+        },
+        {
+          "word": "people",
+          "frequency": 60300
+        },
+        {
+          "word": "want",
+          "frequency": 52641
+        },
+        {
+          "word": "good",
+          "frequency": 52629
+        },
+        {
+          "word": "time",
+          "frequency": 50612
+        },
+        {
+          "word": "need",
+          "frequency": 46624
+        },
+        {
+          "word": "help",
+          "frequency": 44050
+        },
+        {
+          "word": "make",
+          "frequency": 42299
+        },
+        {
+          "word": "com",
+          "frequency": 41036
+        },
+        {
+          "word": "also",
+          "frequency": 40020
+        }
+      ],
+      "most_common_bigrams": [
+        {
+          "bigram": "best answer",
+          "frequency": 281428
+        },
+        {
+          "bigram": "question title",
+          "frequency": 280001
+        },
+        {
+          "bigram": "question content",
+          "frequency": 280000
+        },
+        {
+          "bigram": "content best",
+          "frequency": 128120
+        },
+        {
+          "bigram": "nhttp www",
+          "frequency": 15956
+        },
+        {
+          "bigram": "answer question",
+          "frequency": 13044
+        },
+        {
+          "bigram": "http www",
+          "frequency": 10253
+        },
+        {
+          "bigram": "title anyone",
+          "frequency": 8274
+        },
+        {
+          "bigram": "answer yes",
+          "frequency": 8011
+        },
+        {
+          "bigram": "luck question",
+          "frequency": 7280
+        }
+      ],
+      "word_length_distribution": [
+        8,
+        5,
+        7,
+        8,
+        5,
+        8,
+        7,
+        4,
+        5,
+        5,
+        8,
+        8,
+        6,
+        5,
+        5,
+        7,
+        6,
+        5,
+        7,
+        7,
+        5,
+        8,
+        8,
+        7,
+        6,
+        8,
+        6,
+        8,
+        3,
+        4,
+        5,
+        8,
+        7,
+        6,
+        6,
+        4,
+        6,
+        8,
+        5,
+        12,
+        4,
+        6,
+        6,
+        4,
+        8,
+        9,
+        5,
+        4,
+        5,
+        7,
+        9,
+        4,
+        5,
+        7,
+        7,
+        8,
+        10,
+        8,
+        7,
+        8,
+        4,
+        3,
+        12,
+        3,
+        10,
+        3,
+        7,
+        8,
+        11,
+        7,
+        10,
+        11,
+        14,
+        6,
+        8,
+        7,
+        9,
+        9,
+        8,
+        5,
+        7,
+        4,
+        4,
+        6,
+        8,
+        5,
+        4,
+        9,
+        8,
+        8,
+        9,
+        9,
+        11,
+        5,
+        8,
+        5,
+        5,
+        4,
+        3,
+        6
+      ]
+    },
+    "preprocessing_insights": {
+      "strategies_tested": [
+        "light",
+        "moderate",
+        "aggressive"
+      ],
+      "recommended_strategy": "moderate",
+      "preprocessing_impact": {
+        "shape": [
+          4,
+          7
+        ],
+        "columns": [
+          "Strategy",
+          "Avg_Length",
+          "Avg_Words",
+          "Total_Chars",
+          "Total_Words",
+          "Length_Reduction",
+          "Word_Reduction"
+        ],
+        "data_sample": {
+          "Strategy": {
+            "0": "Original",
+            "1": "Light",
+            "2": "Moderate",
+            "3": "Aggressive"
+          },
+          "Avg_Length": {
+            "0": 566.6863917371134,
+            "1": 497.03054296622486,
+            "2": 289.3038617995064,
+            "3": 277.123161154147
+          },
+          "Avg_Words": {
+            "0": 97.36449773034904,
+            "1": 90.2551830542252,
+            "2": 43.50140179072068,
+            "3": 45.402630009392894
+          },
+          "Total_Chars": {
+            "0": 158671623,
+            "1": 139168055,
+            "2": 81004792,
+            "3": 77594208
+          },
+          "Total_Words": {
+            "0": 27261962,
+            "1": 25271361,
+            "2": 12180349,
+            "3": 12712691
+          },
+          "Length_Reduction": {
+            "0": 0.0,
+            "1": 12.3,
+            "2": 48.9,
+            "3": 51.1
+          },
+          "Word_Reduction": {
+            "0": 0.0,
+            "1": 7.3,
+            "2": 55.3,
+            "3": 53.4
+          }
+        },
+        "dtypes": {
+          "Strategy": "object",
+          "Avg_Length": "float64",
+          "Avg_Words": "float64",
+          "Total_Chars": "int64",
+          "Total_Words": "int64",
+          "Length_Reduction": "float64",
+          "Word_Reduction": "float64"
+        },
+        "memory_usage": "551"
+      }
+    },
+    "data_quality": {}
+  },
+  "word_representation_analysis": {
+    "implemented_representations": [
+      "bow",
+      "tfidf",
+      "glove",
+      "word2vec"
+    ],
+    "feature_characteristics": {
+      "bow": {
+        "train_shape": [
+          279999,
+          262144
+        ],
+        "test_shape": [
+          59999,
+          262144
+        ],
+        "data_type": "float64",
+        "is_sparse": true,
+        "feature_count": 262144,
+        "memory_usage_bytes": 175678224,
+        "memory_usage_gb": 0.16361309587955475
+      },
+      "tfidf": {
+        "train_shape": [
+          279999,
+          262144
+        ],
+        "test_shape": [
+          59999,
+          262144
+        ],
+        "data_type": "float64",
+        "is_sparse": true,
+        "feature_count": 262144,
+        "memory_usage_bytes": 175678224,
+        "memory_usage_gb": 0.16361309587955475
+      },
+      "glove": {
+        "train_shape": [
+          279999,
+          100
+        ],
+        "test_shape": [
+          59999,
+          100
+        ],
+        "data_type": "float32",
+        "is_sparse": false,
+        "feature_count": 100,
+        "memory_usage_bytes": 135999200,
+        "memory_usage_gb": 0.12665912508964539,
+        "quality_metrics": {
+          "mean_value": -0.01531462837010622,
+          "std_value": 0.3501141369342804,
+          "min_value": -2.8153223991394043,
+          "max_value": 2.3053457736968994,
+          "zero_ratio": 0.0
+        }
+      },
+      "word2vec": {
+        "train_shape": [
+          279999,
+          100
+        ],
+        "test_shape": [
+          59999,
+          100
+        ],
+        "data_type": "float32",
+        "is_sparse": false,
+        "feature_count": 100,
+        "memory_usage_bytes": 135999200,
+        "memory_usage_gb": 0.12665912508964539,
+        "quality_metrics": {
+          "mean_value": 0.014889354817569256,
+          "std_value": 0.22614043951034546,
+          "min_value": -1.7477010488510132,
+          "max_value": 1.8629168272018433,
+          "zero_ratio": 0.0
+        }
+      }
+    },
+    "memory_analysis": {
+      "total_memory_usage_gb": 0.5805444419384003,
+      "memory_efficiency_techniques": [
+        "Sparse matrix storage for BoW/TF-IDF",
+        "Float32 precision for embeddings",
+        "Batch processing for large datasets",
+        "Memory cleanup between operations"
+      ],
+      "estimated_memory_savings": "85-90% vs dense matrices"
+    },
+    "quality_metrics": {},
+    "computational_requirements": {
+      "word2vec_implementation": "Custom PyTorch (GPU-accelerated)",
+      "glove_source": "Pre-trained embeddings with optimized loading",
+      "bow_tfidf_method": "HashingVectorizer for memory efficiency",
+      "gensim_dependency": "Removed - custom implementation used"
+    }
+  },
+  "traditional_ml_results": {
+    "experimental_design": {
+      "total_planned_experiments": 8,
+      "experiment_matrix": "3 models × 2 representations + 2 architectural mismatches",
+      "models_tested": [
+        "Random Forest",
+        "Logistic Regression",
+        "Naive Bayes"
+      ],
+      "representations_used": [
+        "BoW",
+        "TF-IDF"
+      ],
+      "validation_strategy": "80-20 train-validation split",
+      "hyperparameter_optimization": "Optuna TPE sampler",
+      "evaluation_metrics": [
+        "Accuracy",
+        "F1-macro",
+        "F1-weighted",
+        "Precision",
+        "Recall"
+      ]
+    },
+    "completed_experiments": [
+      {
+        "model": "Random Forest (Optimized)",
+        "representation": "BOW",
+        "performance_metrics": {
+          "accuracy": 0.6167142857142857,
+          "f1_macro": 0.6083693615028125,
+          "f1_weighted": 0.6080867761998553,
+          "precision_macro": 0.6204716128591348,
+          "recall_macro": 0.6170164531145407
+        },
+        "training_metrics": {
+          "training_time_seconds": 10169.029907226562,
+          "training_time_minutes": 169.48383178710938
+        },
+        "hyperparameters": {
+          "n_estimators": 205,
+          "max_depth": 46,
+          "min_samples_split": 5,
+          "min_samples_leaf": 1,
+          "max_features": "sqrt",
+          "bootstrap": false
+        },
+        "confusion_matrix": [
+          [
+            2237,
+            540,
+            367,
+            642,
+            483,
+            222,
+            446,
+            352,
+            204,
+            139
+          ],
+          [
+            178,
+            4689,
+            129,
+            212,
+            76,
+            18,
+            52,
+            135,
+            18,
+            58
+          ],
+          [
+            313,
+            342,
+            1974,
+            575,
+            253,
+            241,
+            569,
+            916,
+            257,
+            179
+          ],
+          [
+            151,
+            382,
+            147,
+            3342,
+            603,
+            176,
+            174,
+            200,
+            149,
+            276
+          ],
+          [
+            96,
+            104,
+            86,
+            461,
+            4298,
+            164,
+            110,
+            70,
+            149,
+            72
+          ],
+          [
+            107,
+            88,
+            118,
+            303,
+            496,
+            3877,
+            92,
+            343,
+            90,
+            75
+          ],
+          [
+            291,
+            143,
+            174,
+            280,
+            187,
+            109,
+            4053,
+            140,
+            177,
+            77
+          ],
+          [
+            84,
+            226,
+            250,
+            370,
+            90,
+            400,
+            144,
+            3817,
+            124,
+            112
+          ],
+          [
+            177,
+            182,
+            366,
+            582,
+            837,
+            242,
+            521,
+            237,
+            2286,
+            156
+          ],
+          [
+            113,
+            147,
+            107,
+            461,
+            174,
+            194,
+            110,
+            249,
+            33,
+            3963
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.60      0.40      0.48      5632\n  Computers & Internet       0.69      0.84      0.76      5565\n Education & Reference       0.53      0.35      0.42      5619\n Entertainment & Music       0.46      0.60      0.52      5600\nFamily & Relationships       0.57      0.77      0.66      5610\n                Health       0.69      0.69      0.69      5589\n Politics & Government       0.65      0.72      0.68      5631\n Science & Mathematics       0.59      0.68      0.63      5617\n     Society & Culture       0.66      0.41      0.50      5586\n                Sports       0.78      0.71      0.74      5551\n\n              accuracy                           0.62     56000\n             macro avg       0.62      0.62      0.61     56000\n          weighted avg       0.62      0.62      0.61     56000\n"
+      },
+      {
+        "model": "Logistic Regression (Optimized)",
+        "representation": "BOW",
+        "performance_metrics": {
+          "accuracy": 0.68625,
+          "f1_macro": 0.68416390836588,
+          "f1_weighted": 0.6838326793588447,
+          "precision_macro": 0.6830025671757518,
+          "recall_macro": 0.6865891135777503
+        },
+        "training_metrics": {
+          "training_time_seconds": 7887.385495901108,
+          "training_time_minutes": 131.45642493168512
+        },
+        "hyperparameters": {
+          "solver": "liblinear",
+          "C": 0.06880091926851026,
+          "max_iter": 342
+        },
+        "confusion_matrix": [
+          [
+            2742,
+            326,
+            455,
+            372,
+            371,
+            242,
+            359,
+            269,
+            353,
+            143
+          ],
+          [
+            287,
+            4696,
+            138,
+            167,
+            54,
+            20,
+            28,
+            103,
+            43,
+            29
+          ],
+          [
+            459,
+            167,
+            2778,
+            265,
+            140,
+            168,
+            334,
+            804,
+            383,
+            121
+          ],
+          [
+            230,
+            215,
+            201,
+            3898,
+            259,
+            126,
+            97,
+            106,
+            280,
+            188
+          ],
+          [
+            186,
+            54,
+            136,
+            273,
+            4234,
+            232,
+            88,
+            41,
+            319,
+            47
+          ],
+          [
+            182,
+            41,
+            167,
+            108,
+            327,
+            4241,
+            62,
+            229,
+            164,
+            68
+          ],
+          [
+            408,
+            67,
+            295,
+            103,
+            104,
+            65,
+            4143,
+            91,
+            305,
+            50
+          ],
+          [
+            175,
+            90,
+            509,
+            137,
+            46,
+            305,
+            69,
+            4060,
+            152,
+            74
+          ],
+          [
+            335,
+            76,
+            496,
+            384,
+            536,
+            190,
+            343,
+            171,
+            2958,
+            97
+          ],
+          [
+            121,
+            53,
+            101,
+            200,
+            71,
+            102,
+            64,
+            103,
+            56,
+            4680
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.54      0.49      0.51      5632\n  Computers & Internet       0.81      0.84      0.83      5565\n Education & Reference       0.53      0.49      0.51      5619\n Entertainment & Music       0.66      0.70      0.68      5600\nFamily & Relationships       0.69      0.75      0.72      5610\n                Health       0.75      0.76      0.75      5589\n Politics & Government       0.74      0.74      0.74      5631\n Science & Mathematics       0.68      0.72      0.70      5617\n     Society & Culture       0.59      0.53      0.56      5586\n                Sports       0.85      0.84      0.85      5551\n\n              accuracy                           0.69     56000\n             macro avg       0.68      0.69      0.68     56000\n          weighted avg       0.68      0.69      0.68     56000\n"
+      },
+      {
+        "model": "Naive Bayes (Optimized)",
+        "representation": "BOW",
+        "performance_metrics": {
+          "accuracy": 0.6764464285714286,
+          "f1_macro": 0.6738532206871103,
+          "f1_weighted": 0.6735392733296155,
+          "precision_macro": 0.6752814493345126,
+          "recall_macro": 0.676752174021545
+        },
+        "training_metrics": {
+          "training_time_seconds": 2.101346731185913,
+          "training_time_minutes": 0.035022445519765216
+        },
+        "hyperparameters": {
+          "alpha": 0.5028971584233904,
+          "fit_prior": false
+        },
+        "confusion_matrix": [
+          [
+            2760,
+            310,
+            416,
+            467,
+            502,
+            224,
+            322,
+            204,
+            290,
+            137
+          ],
+          [
+            305,
+            4666,
+            140,
+            166,
+            86,
+            23,
+            25,
+            85,
+            44,
+            25
+          ],
+          [
+            428,
+            169,
+            2593,
+            324,
+            221,
+            171,
+            406,
+            713,
+            448,
+            146
+          ],
+          [
+            162,
+            275,
+            176,
+            3872,
+            377,
+            140,
+            105,
+            83,
+            242,
+            168
+          ],
+          [
+            143,
+            58,
+            93,
+            328,
+            4471,
+            161,
+            87,
+            18,
+            208,
+            43
+          ],
+          [
+            164,
+            25,
+            149,
+            137,
+            476,
+            4208,
+            65,
+            170,
+            147,
+            48
+          ],
+          [
+            521,
+            49,
+            255,
+            127,
+            126,
+            55,
+            4106,
+            59,
+            286,
+            47
+          ],
+          [
+            124,
+            102,
+            538,
+            166,
+            66,
+            376,
+            88,
+            3890,
+            185,
+            82
+          ],
+          [
+            246,
+            63,
+            439,
+            485,
+            722,
+            172,
+            380,
+            102,
+            2892,
+            85
+          ],
+          [
+            136,
+            73,
+            123,
+            277,
+            105,
+            159,
+            65,
+            136,
+            54,
+            4423
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.55      0.49      0.52      5632\n  Computers & Internet       0.81      0.84      0.82      5565\n Education & Reference       0.53      0.46      0.49      5619\n Entertainment & Music       0.61      0.69      0.65      5600\nFamily & Relationships       0.63      0.80      0.70      5610\n                Health       0.74      0.75      0.75      5589\n Politics & Government       0.73      0.73      0.73      5631\n Science & Mathematics       0.71      0.69      0.70      5617\n     Society & Culture       0.60      0.52      0.56      5586\n                Sports       0.85      0.80      0.82      5551\n\n              accuracy                           0.68     56000\n             macro avg       0.68      0.68      0.67     56000\n          weighted avg       0.67      0.68      0.67     56000\n"
+      },
+      {
+        "model": "Random Forest (Optimized)",
+        "representation": "TFIDF",
+        "performance_metrics": {
+          "accuracy": 0.6158571428571429,
+          "f1_macro": 0.6084227630064463,
+          "f1_weighted": 0.6081492402539448,
+          "precision_macro": 0.6220180458576968,
+          "recall_macro": 0.616155008820875
+        },
+        "training_metrics": {
+          "training_time_seconds": 11216.27422118187,
+          "training_time_minutes": 186.93790368636448
+        },
+        "hyperparameters": {
+          "n_estimators": 205,
+          "max_depth": 46,
+          "min_samples_split": 5,
+          "min_samples_leaf": 1,
+          "max_features": "sqrt",
+          "bootstrap": false
+        },
+        "confusion_matrix": [
+          [
+            2236,
+            511,
+            379,
+            739,
+            470,
+            223,
+            451,
+            289,
+            184,
+            150
+          ],
+          [
+            182,
+            4676,
+            121,
+            268,
+            77,
+            19,
+            41,
+            114,
+            13,
+            54
+          ],
+          [
+            312,
+            332,
+            2036,
+            624,
+            272,
+            222,
+            544,
+            824,
+            252,
+            201
+          ],
+          [
+            154,
+            337,
+            153,
+            3381,
+            626,
+            168,
+            166,
+            169,
+            151,
+            295
+          ],
+          [
+            88,
+            94,
+            97,
+            448,
+            4381,
+            144,
+            101,
+            50,
+            133,
+            74
+          ],
+          [
+            113,
+            95,
+            122,
+            370,
+            528,
+            3824,
+            78,
+            300,
+            81,
+            78
+          ],
+          [
+            298,
+            132,
+            182,
+            319,
+            181,
+            94,
+            4045,
+            116,
+            172,
+            92
+          ],
+          [
+            86,
+            228,
+            282,
+            451,
+            98,
+            379,
+            148,
+            3699,
+            127,
+            119
+          ],
+          [
+            182,
+            179,
+            385,
+            631,
+            871,
+            224,
+            492,
+            210,
+            2248,
+            164
+          ],
+          [
+            102,
+            143,
+            101,
+            496,
+            182,
+            189,
+            105,
+            238,
+            33,
+            3962
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.60      0.40      0.48      5632\n  Computers & Internet       0.70      0.84      0.76      5565\n Education & Reference       0.53      0.36      0.43      5619\n Entertainment & Music       0.44      0.60      0.51      5600\nFamily & Relationships       0.57      0.78      0.66      5610\n                Health       0.70      0.68      0.69      5589\n Politics & Government       0.66      0.72      0.69      5631\n Science & Mathematics       0.62      0.66      0.64      5617\n     Society & Culture       0.66      0.40      0.50      5586\n                Sports       0.76      0.71      0.74      5551\n\n              accuracy                           0.62     56000\n             macro avg       0.62      0.62      0.61     56000\n          weighted avg       0.62      0.62      0.61     56000\n"
+      },
+      {
+        "model": "Logistic Regression (Optimized)",
+        "representation": "TFIDF",
+        "performance_metrics": {
+          "accuracy": 0.6956607142857143,
+          "f1_macro": 0.6940710823476552,
+          "f1_weighted": 0.693748918900343,
+          "precision_macro": 0.6930874373348119,
+          "recall_macro": 0.6959816950710144
+        },
+        "training_metrics": {
+          "training_time_seconds": 673.1299049854279,
+          "training_time_minutes": 11.21883174975713
+        },
+        "hyperparameters": {
+          "solver": "saga",
+          "C": 1.9788613387437108,
+          "max_iter": 106
+        },
+        "confusion_matrix": [
+          [
+            2814,
+            298,
+            455,
+            335,
+            374,
+            227,
+            353,
+            261,
+            379,
+            136
+          ],
+          [
+            304,
+            4684,
+            152,
+            153,
+            50,
+            23,
+            30,
+            97,
+            48,
+            24
+          ],
+          [
+            447,
+            147,
+            2830,
+            235,
+            135,
+            171,
+            327,
+            792,
+            427,
+            108
+          ],
+          [
+            231,
+            208,
+            208,
+            3902,
+            257,
+            126,
+            101,
+            98,
+            300,
+            169
+          ],
+          [
+            186,
+            50,
+            116,
+            263,
+            4253,
+            239,
+            88,
+            35,
+            339,
+            41
+          ],
+          [
+            183,
+            26,
+            153,
+            93,
+            286,
+            4328,
+            60,
+            229,
+            163,
+            68
+          ],
+          [
+            386,
+            50,
+            283,
+            95,
+            83,
+            62,
+            4232,
+            80,
+            320,
+            40
+          ],
+          [
+            151,
+            83,
+            495,
+            110,
+            39,
+            306,
+            62,
+            4156,
+            155,
+            60
+          ],
+          [
+            315,
+            71,
+            474,
+            356,
+            519,
+            193,
+            330,
+            163,
+            3080,
+            85
+          ],
+          [
+            116,
+            49,
+            105,
+            207,
+            60,
+            103,
+            61,
+            115,
+            57,
+            4678
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.55      0.50      0.52      5632\n  Computers & Internet       0.83      0.84      0.83      5565\n Education & Reference       0.54      0.50      0.52      5619\n Entertainment & Music       0.68      0.70      0.69      5600\nFamily & Relationships       0.70      0.76      0.73      5610\n                Health       0.75      0.77      0.76      5589\n Politics & Government       0.75      0.75      0.75      5631\n Science & Mathematics       0.69      0.74      0.71      5617\n     Society & Culture       0.58      0.55      0.57      5586\n                Sports       0.86      0.84      0.85      5551\n\n              accuracy                           0.70     56000\n             macro avg       0.69      0.70      0.69     56000\n          weighted avg       0.69      0.70      0.69     56000\n"
+      },
+      {
+        "model": "Naive Bayes (Optimized)",
+        "representation": "TFIDF",
+        "performance_metrics": {
+          "accuracy": 0.6835535714285714,
+          "f1_macro": 0.6796254501932874,
+          "f1_weighted": 0.6793125633360609,
+          "precision_macro": 0.6823890772576393,
+          "recall_macro": 0.6838532980876181
+        },
+        "training_metrics": {
+          "training_time_seconds": 2.0908586978912354,
+          "training_time_minutes": 0.03484764496485392
+        },
+        "hyperparameters": {
+          "alpha": 0.5981136314561151,
+          "fit_prior": true
+        },
+        "confusion_matrix": [
+          [
+            2789,
+            335,
+            335,
+            310,
+            564,
+            250,
+            374,
+            215,
+            343,
+            117
+          ],
+          [
+            283,
+            4764,
+            113,
+            107,
+            102,
+            29,
+            31,
+            76,
+            43,
+            17
+          ],
+          [
+            448,
+            186,
+            2456,
+            229,
+            264,
+            206,
+            468,
+            745,
+            500,
+            117
+          ],
+          [
+            171,
+            298,
+            156,
+            3674,
+            473,
+            173,
+            126,
+            79,
+            292,
+            158
+          ],
+          [
+            157,
+            64,
+            58,
+            183,
+            4613,
+            176,
+            92,
+            21,
+            215,
+            31
+          ],
+          [
+            160,
+            31,
+            115,
+            68,
+            466,
+            4369,
+            69,
+            136,
+            147,
+            28
+          ],
+          [
+            448,
+            61,
+            180,
+            66,
+            137,
+            64,
+            4278,
+            62,
+            295,
+            40
+          ],
+          [
+            151,
+            100,
+            428,
+            101,
+            75,
+            412,
+            101,
+            3976,
+            207,
+            66
+          ],
+          [
+            269,
+            80,
+            348,
+            322,
+            824,
+            191,
+            401,
+            108,
+            2972,
+            71
+          ],
+          [
+            153,
+            88,
+            93,
+            208,
+            135,
+            193,
+            75,
+            156,
+            62,
+            4388
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.55      0.50      0.52      5632\n  Computers & Internet       0.79      0.86      0.82      5565\n Education & Reference       0.57      0.44      0.50      5619\n Entertainment & Music       0.70      0.66      0.68      5600\nFamily & Relationships       0.60      0.82      0.70      5610\n                Health       0.72      0.78      0.75      5589\n Politics & Government       0.71      0.76      0.73      5631\n Science & Mathematics       0.71      0.71      0.71      5617\n     Society & Culture       0.59      0.53      0.56      5586\n                Sports       0.87      0.79      0.83      5551\n\n              accuracy                           0.68     56000\n             macro avg       0.68      0.68      0.68     56000\n          weighted avg       0.68      0.68      0.68     56000\n"
+      }
+    ],
+    "skipped_experiments": [
+      {
+        "model": "Deep Neural Network (Skipped)",
+        "representation": "BOW",
+        "skip_reason": "Memory scalability constraints",
+        "architectural_analysis": {
+          "memory_requirement_gb": 293.0,
+          "available_memory_gb": 16.0,
+          "architectural_issue": "Dense layer incompatible with 262k sparse features",
+          "research_insight": "DNNs require dense embedding representations, not sparse count vectors",
+          "alternative_approach": "DNN with GloVe/Word2Vec in Cell 8"
+        }
+      },
+      {
+        "model": "Deep Neural Network (Skipped)",
+        "representation": "TFIDF",
+        "skip_reason": "Memory scalability constraints",
+        "architectural_analysis": {
+          "memory_requirement_gb": 293.0,
+          "available_memory_gb": 16.0,
+          "architectural_issue": "Dense layer incompatible with 262k sparse features",
+          "research_insight": "DNNs require dense embedding representations, not sparse count vectors",
+          "alternative_approach": "DNN with GloVe/Word2Vec in Cell 8"
+        }
+      }
+    ],
+    "performance_analysis": {
+      "summary_statistics": {
+        "mean_f1_macro": 0.6580842976838651,
+        "std_f1_macro": 0.03565042742586812,
+        "min_f1_macro": 0.6083693615028125,
+        "max_f1_macro": 0.6940710823476552,
+        "median_f1_macro": 0.6767393354401988
+      },
+      "training_efficiency": {
+        "mean_training_time": 4991.668622454007,
+        "total_training_time": 29950.011734724045,
+        "fastest_experiment": 2.0908586978912354,
+        "slowest_experiment": 11216.27422118187
+      },
+      "best_performing_experiment": {
+        "model": "Logistic Regression (Optimized)",
+        "representation": "TFIDF",
+        "performance_metrics": {
+          "accuracy": 0.6956607142857143,
+          "f1_macro": 0.6940710823476552,
+          "f1_weighted": 0.693748918900343,
+          "precision_macro": 0.6930874373348119,
+          "recall_macro": 0.6959816950710144
+        },
+        "training_metrics": {
+          "training_time_seconds": 673.1299049854279,
+          "training_time_minutes": 11.21883174975713
+        },
+        "hyperparameters": {
+          "solver": "saga",
+          "C": 1.9788613387437108,
+          "max_iter": 106
+        },
+        "confusion_matrix": [
+          [
+            2814,
+            298,
+            455,
+            335,
+            374,
+            227,
+            353,
+            261,
+            379,
+            136
+          ],
+          [
+            304,
+            4684,
+            152,
+            153,
+            50,
+            23,
+            30,
+            97,
+            48,
+            24
+          ],
+          [
+            447,
+            147,
+            2830,
+            235,
+            135,
+            171,
+            327,
+            792,
+            427,
+            108
+          ],
+          [
+            231,
+            208,
+            208,
+            3902,
+            257,
+            126,
+            101,
+            98,
+            300,
+            169
+          ],
+          [
+            186,
+            50,
+            116,
+            263,
+            4253,
+            239,
+            88,
+            35,
+            339,
+            41
+          ],
+          [
+            183,
+            26,
+            153,
+            93,
+            286,
+            4328,
+            60,
+            229,
+            163,
+            68
+          ],
+          [
+            386,
+            50,
+            283,
+            95,
+            83,
+            62,
+            4232,
+            80,
+            320,
+            40
+          ],
+          [
+            151,
+            83,
+            495,
+            110,
+            39,
+            306,
+            62,
+            4156,
+            155,
+            60
+          ],
+          [
+            315,
+            71,
+            474,
+            356,
+            519,
+            193,
+            330,
+            163,
+            3080,
+            85
+          ],
+          [
+            116,
+            49,
+            105,
+            207,
+            60,
+            103,
+            61,
+            115,
+            57,
+            4678
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.55      0.50      0.52      5632\n  Computers & Internet       0.83      0.84      0.83      5565\n Education & Reference       0.54      0.50      0.52      5619\n Entertainment & Music       0.68      0.70      0.69      5600\nFamily & Relationships       0.70      0.76      0.73      5610\n                Health       0.75      0.77      0.76      5589\n Politics & Government       0.75      0.75      0.75      5631\n Science & Mathematics       0.69      0.74      0.71      5617\n     Society & Culture       0.58      0.55      0.57      5586\n                Sports       0.86      0.84      0.85      5551\n\n              accuracy                           0.70     56000\n             macro avg       0.69      0.70      0.69     56000\n          weighted avg       0.69      0.70      0.69     56000\n"
+      },
+      "most_efficient_experiment": {
+        "model": "Naive Bayes (Optimized)",
+        "representation": "TFIDF",
+        "performance_metrics": {
+          "accuracy": 0.6835535714285714,
+          "f1_macro": 0.6796254501932874,
+          "f1_weighted": 0.6793125633360609,
+          "precision_macro": 0.6823890772576393,
+          "recall_macro": 0.6838532980876181
+        },
+        "training_metrics": {
+          "training_time_seconds": 2.0908586978912354,
+          "training_time_minutes": 0.03484764496485392
+        },
+        "hyperparameters": {
+          "alpha": 0.5981136314561151,
+          "fit_prior": true
+        },
+        "confusion_matrix": [
+          [
+            2789,
+            335,
+            335,
+            310,
+            564,
+            250,
+            374,
+            215,
+            343,
+            117
+          ],
+          [
+            283,
+            4764,
+            113,
+            107,
+            102,
+            29,
+            31,
+            76,
+            43,
+            17
+          ],
+          [
+            448,
+            186,
+            2456,
+            229,
+            264,
+            206,
+            468,
+            745,
+            500,
+            117
+          ],
+          [
+            171,
+            298,
+            156,
+            3674,
+            473,
+            173,
+            126,
+            79,
+            292,
+            158
+          ],
+          [
+            157,
+            64,
+            58,
+            183,
+            4613,
+            176,
+            92,
+            21,
+            215,
+            31
+          ],
+          [
+            160,
+            31,
+            115,
+            68,
+            466,
+            4369,
+            69,
+            136,
+            147,
+            28
+          ],
+          [
+            448,
+            61,
+            180,
+            66,
+            137,
+            64,
+            4278,
+            62,
+            295,
+            40
+          ],
+          [
+            151,
+            100,
+            428,
+            101,
+            75,
+            412,
+            101,
+            3976,
+            207,
+            66
+          ],
+          [
+            269,
+            80,
+            348,
+            322,
+            824,
+            191,
+            401,
+            108,
+            2972,
+            71
+          ],
+          [
+            153,
+            88,
+            93,
+            208,
+            135,
+            193,
+            75,
+            156,
+            62,
+            4388
+          ]
+        ],
+        "classification_report": "                        precision    recall  f1-score   support\n\n    Business & Finance       0.55      0.50      0.52      5632\n  Computers & Internet       0.79      0.86      0.82      5565\n Education & Reference       0.57      0.44      0.50      5619\n Entertainment & Music       0.70      0.66      0.68      5600\nFamily & Relationships       0.60      0.82      0.70      5610\n                Health       0.72      0.78      0.75      5589\n Politics & Government       0.71      0.76      0.73      5631\n Science & Mathematics       0.71      0.71      0.71      5617\n     Society & Culture       0.59      0.53      0.56      5586\n                Sports       0.87      0.79      0.83      5551\n\n              accuracy                           0.68     56000\n             macro avg       0.68      0.68      0.68     56000\n          weighted avg       0.68      0.68      0.68     56000\n"
+      }
+    },
+    "hyperparameter_details": {},
+    "architectural_insights": {
+      "sparse_matrix_compatibility": "Excellent for traditional ML models",
+      "memory_optimization_success": "Achieved 85-90% memory reduction",
+      "dnn_compatibility_issue": "Dense neural networks incompatible with sparse features",
+      "research_contribution": "Demonstrated architectural importance in model selection"
+    }
+  },
+  "neural_network_results": {
+    "experimental_design": {
+      "total_planned_experiments": 14,
+      "experiment_matrix": "7 architectures × 2 embeddings",
+      "architectures_tested": [
+        "DNN",
+        "SimpleRNN",
+        "GRU",
+        "LSTM",
+        "Bi-SimpleRNN",
+        "Bi-GRU",
+        "Bi-LSTM"
+      ],
+      "embeddings_used": [
+        "GloVe",
+        "Word2Vec"
+      ],
+      "input_representation": "Dense embedding vectors",
+      "sequence_handling": "Fixed-length sequences with padding/truncation",
+      "optimization_framework": "PyTorch with GPU acceleration"
+    },
+    "completed_experiments": [
+      {
+        "model_architecture": "DNN",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6885178571428572,
+          "f1_macro": 0.6830038462752057,
+          "f1_weighted": 0.6826822099832912,
+          "precision_macro": 0.683654378383921,
+          "recall_macro": 0.6888803067529836
+        },
+        "model_specifications": {
+          "parameters": 187146,
+          "parameters_millions": 0.187146,
+          "architecture_type": "Feedforward"
+        },
+        "training_details": {
+          "training_time_seconds": 156.36834859848022,
+          "training_time_minutes": 2.606139143308004,
+          "gpu_memory_peak_gb": 0.4318203926086426,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "hidden_dims": [
+            512,
+            256
+          ]
+        },
+        "confusion_matrix": [
+          [
+            2495,
+            367,
+            385,
+            399,
+            461,
+            240,
+            433,
+            298,
+            400,
+            154
+          ],
+          [
+            211,
+            4751,
+            132,
+            160,
+            71,
+            26,
+            37,
+            108,
+            36,
+            33
+          ],
+          [
+            311,
+            225,
+            2475,
+            291,
+            173,
+            213,
+            417,
+            884,
+            500,
+            130
+          ],
+          [
+            130,
+            259,
+            156,
+            3913,
+            319,
+            131,
+            117,
+            115,
+            286,
+            174
+          ],
+          [
+            98,
+            72,
+            123,
+            313,
+            4245,
+            216,
+            106,
+            27,
+            355,
+            55
+          ],
+          [
+            98,
+            39,
+            109,
+            119,
+            388,
+            4333,
+            62,
+            206,
+            164,
+            71
+          ],
+          [
+            283,
+            60,
+            217,
+            104,
+            98,
+            55,
+            4368,
+            71,
+            326,
+            49
+          ],
+          [
+            98,
+            132,
+            366,
+            123,
+            48,
+            334,
+            80,
+            4218,
+            153,
+            65
+          ],
+          [
+            172,
+            79,
+            361,
+            368,
+            612,
+            185,
+            430,
+            170,
+            3113,
+            96
+          ],
+          [
+            95,
+            66,
+            78,
+            251,
+            77,
+            116,
+            65,
+            95,
+            62,
+            4646
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.63      0.44      0.52      5632\n     Class_1       0.79      0.85      0.82      5565\n     Class_2       0.56      0.44      0.49      5619\n     Class_3       0.65      0.70      0.67      5600\n     Class_4       0.65      0.76      0.70      5610\n     Class_5       0.74      0.78      0.76      5589\n     Class_6       0.71      0.78      0.74      5631\n     Class_7       0.68      0.75      0.71      5617\n     Class_8       0.58      0.56      0.57      5586\n     Class_9       0.85      0.84      0.84      5551\n\n    accuracy                           0.69     56000\n   macro avg       0.68      0.69      0.68     56000\nweighted avg       0.68      0.69      0.68     56000\n"
+      },
+      {
+        "model_architecture": "SimpleRNN",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6685535714285714,
+          "f1_macro": 0.6629069853494117,
+          "f1_weighted": 0.6625870770773553,
+          "precision_macro": 0.6632222176724388,
+          "recall_macro": 0.6689160953806753
+        },
+        "model_specifications": {
+          "parameters": 226314,
+          "parameters_millions": 0.226314,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 160.8680534362793,
+          "training_time_minutes": 2.6811342239379883,
+          "gpu_memory_peak_gb": 0.02345895767211914,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "RNN",
+          "bidirectional": false,
+          "hidden_dim": 256
+        },
+        "confusion_matrix": [
+          [
+            2424,
+            388,
+            406,
+            355,
+            511,
+            297,
+            422,
+            294,
+            367,
+            168
+          ],
+          [
+            242,
+            4679,
+            127,
+            153,
+            87,
+            31,
+            42,
+            124,
+            38,
+            42
+          ],
+          [
+            335,
+            217,
+            2448,
+            279,
+            174,
+            250,
+            446,
+            853,
+            467,
+            150
+          ],
+          [
+            143,
+            285,
+            174,
+            3621,
+            441,
+            169,
+            131,
+            140,
+            279,
+            217
+          ],
+          [
+            90,
+            81,
+            119,
+            312,
+            4261,
+            228,
+            110,
+            25,
+            321,
+            63
+          ],
+          [
+            118,
+            39,
+            111,
+            105,
+            416,
+            4283,
+            71,
+            207,
+            154,
+            85
+          ],
+          [
+            344,
+            72,
+            231,
+            124,
+            116,
+            79,
+            4178,
+            80,
+            335,
+            72
+          ],
+          [
+            97,
+            148,
+            414,
+            132,
+            59,
+            399,
+            86,
+            4065,
+            134,
+            83
+          ],
+          [
+            188,
+            90,
+            399,
+            339,
+            694,
+            222,
+            420,
+            178,
+            2948,
+            108
+          ],
+          [
+            96,
+            78,
+            89,
+            283,
+            86,
+            141,
+            72,
+            118,
+            56,
+            4532
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.59      0.43      0.50      5632\n     Class_1       0.77      0.84      0.80      5565\n     Class_2       0.54      0.44      0.48      5619\n     Class_3       0.63      0.65      0.64      5600\n     Class_4       0.62      0.76      0.68      5610\n     Class_5       0.70      0.77      0.73      5589\n     Class_6       0.70      0.74      0.72      5631\n     Class_7       0.67      0.72      0.69      5617\n     Class_8       0.58      0.53      0.55      5586\n     Class_9       0.82      0.82      0.82      5551\n\n    accuracy                           0.67     56000\n   macro avg       0.66      0.67      0.66     56000\nweighted avg       0.66      0.67      0.66     56000\n"
+      },
+      {
+        "model_architecture": "GRU",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6869107142857143,
+          "f1_macro": 0.6812059421618514,
+          "f1_weighted": 0.6808863805629242,
+          "precision_macro": 0.6811841910517342,
+          "recall_macro": 0.6872773278514273
+        },
+        "model_specifications": {
+          "parameters": 672778,
+          "parameters_millions": 0.672778,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 173.8561074733734,
+          "training_time_minutes": 2.89760179122289,
+          "gpu_memory_peak_gb": 0.03248167037963867,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "GRU",
+          "bidirectional": false,
+          "hidden_dim": 256
+        },
+        "confusion_matrix": [
+          [
+            2500,
+            375,
+            392,
+            368,
+            466,
+            285,
+            407,
+            284,
+            398,
+            157
+          ],
+          [
+            220,
+            4726,
+            122,
+            164,
+            72,
+            35,
+            32,
+            119,
+            39,
+            36
+          ],
+          [
+            330,
+            214,
+            2507,
+            283,
+            152,
+            248,
+            405,
+            875,
+            466,
+            139
+          ],
+          [
+            122,
+            261,
+            190,
+            3840,
+            342,
+            152,
+            117,
+            122,
+            258,
+            196
+          ],
+          [
+            113,
+            69,
+            127,
+            294,
+            4236,
+            250,
+            112,
+            24,
+            326,
+            59
+          ],
+          [
+            103,
+            34,
+            106,
+            115,
+            348,
+            4384,
+            64,
+            210,
+            151,
+            74
+          ],
+          [
+            303,
+            58,
+            240,
+            110,
+            88,
+            70,
+            4333,
+            62,
+            309,
+            58
+          ],
+          [
+            92,
+            132,
+            358,
+            121,
+            44,
+            368,
+            79,
+            4216,
+            142,
+            65
+          ],
+          [
+            188,
+            81,
+            392,
+            352,
+            634,
+            213,
+            430,
+            163,
+            3032,
+            101
+          ],
+          [
+            75,
+            59,
+            77,
+            220,
+            80,
+            129,
+            68,
+            90,
+            60,
+            4693
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.62      0.44      0.52      5632\n     Class_1       0.79      0.85      0.82      5565\n     Class_2       0.56      0.45      0.49      5619\n     Class_3       0.65      0.69      0.67      5600\n     Class_4       0.66      0.76      0.70      5610\n     Class_5       0.71      0.78      0.75      5589\n     Class_6       0.72      0.77      0.74      5631\n     Class_7       0.68      0.75      0.72      5617\n     Class_8       0.59      0.54      0.56      5586\n     Class_9       0.84      0.85      0.84      5551\n\n    accuracy                           0.69     56000\n   macro avg       0.68      0.69      0.68     56000\nweighted avg       0.68      0.69      0.68     56000\n"
+      },
+      {
+        "model_architecture": "LSTM",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6874821428571428,
+          "f1_macro": 0.6822133078902013,
+          "f1_weighted": 0.6818987728983609,
+          "precision_macro": 0.6818136473100214,
+          "recall_macro": 0.6878362831026091
+        },
+        "model_specifications": {
+          "parameters": 896010,
+          "parameters_millions": 0.89601,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 179.93970131874084,
+          "training_time_minutes": 2.998995021979014,
+          "gpu_memory_peak_gb": 0.038571834564208984,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "LSTM",
+          "bidirectional": false,
+          "hidden_dim": 256
+        },
+        "confusion_matrix": [
+          [
+            2572,
+            367,
+            393,
+            381,
+            474,
+            260,
+            389,
+            260,
+            374,
+            162
+          ],
+          [
+            237,
+            4724,
+            132,
+            161,
+            79,
+            27,
+            31,
+            104,
+            33,
+            37
+          ],
+          [
+            350,
+            209,
+            2548,
+            272,
+            173,
+            225,
+            415,
+            855,
+            429,
+            143
+          ],
+          [
+            147,
+            248,
+            186,
+            3860,
+            328,
+            147,
+            117,
+            102,
+            258,
+            207
+          ],
+          [
+            121,
+            71,
+            128,
+            305,
+            4275,
+            222,
+            106,
+            20,
+            301,
+            61
+          ],
+          [
+            116,
+            36,
+            101,
+            121,
+            384,
+            4344,
+            65,
+            190,
+            152,
+            80
+          ],
+          [
+            324,
+            55,
+            223,
+            112,
+            104,
+            61,
+            4337,
+            58,
+            297,
+            60
+          ],
+          [
+            104,
+            131,
+            388,
+            116,
+            49,
+            377,
+            80,
+            4164,
+            132,
+            76
+          ],
+          [
+            193,
+            82,
+            408,
+            351,
+            686,
+            195,
+            433,
+            160,
+            2982,
+            96
+          ],
+          [
+            88,
+            57,
+            81,
+            227,
+            76,
+            122,
+            66,
+            86,
+            55,
+            4693
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.60      0.46      0.52      5632\n     Class_1       0.79      0.85      0.82      5565\n     Class_2       0.56      0.45      0.50      5619\n     Class_3       0.65      0.69      0.67      5600\n     Class_4       0.64      0.76      0.70      5610\n     Class_5       0.73      0.78      0.75      5589\n     Class_6       0.72      0.77      0.74      5631\n     Class_7       0.69      0.74      0.72      5617\n     Class_8       0.59      0.53      0.56      5586\n     Class_9       0.84      0.85      0.84      5551\n\n    accuracy                           0.69     56000\n   macro avg       0.68      0.69      0.68     56000\nweighted avg       0.68      0.69      0.68     56000\n"
+      },
+      {
+        "model_architecture": "Bidirectional SimpleRNN",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6703035714285714,
+          "f1_macro": 0.6644526099736796,
+          "f1_weighted": 0.6641321790046718,
+          "precision_macro": 0.6645863524534448,
+          "recall_macro": 0.6706642613545595
+        },
+        "model_specifications": {
+          "parameters": 160778,
+          "parameters_millions": 0.160778,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 178.10378217697144,
+          "training_time_minutes": 2.968396369616191,
+          "gpu_memory_peak_gb": 0.05373239517211914,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "RNN",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2419,
+            394,
+            441,
+            357,
+            480,
+            277,
+            435,
+            294,
+            367,
+            168
+          ],
+          [
+            236,
+            4690,
+            141,
+            146,
+            79,
+            32,
+            43,
+            121,
+            37,
+            40
+          ],
+          [
+            335,
+            230,
+            2434,
+            267,
+            168,
+            238,
+            453,
+            875,
+            465,
+            154
+          ],
+          [
+            138,
+            300,
+            181,
+            3634,
+            421,
+            167,
+            135,
+            132,
+            281,
+            211
+          ],
+          [
+            88,
+            80,
+            132,
+            319,
+            4244,
+            226,
+            122,
+            24,
+            313,
+            62
+          ],
+          [
+            106,
+            43,
+            115,
+            106,
+            402,
+            4283,
+            71,
+            231,
+            156,
+            76
+          ],
+          [
+            336,
+            73,
+            217,
+            112,
+            110,
+            74,
+            4247,
+            81,
+            314,
+            67
+          ],
+          [
+            104,
+            145,
+            417,
+            129,
+            51,
+            382,
+            87,
+            4088,
+            131,
+            83
+          ],
+          [
+            176,
+            96,
+            398,
+            350,
+            671,
+            214,
+            439,
+            178,
+            2946,
+            118
+          ],
+          [
+            90,
+            74,
+            91,
+            278,
+            90,
+            129,
+            75,
+            113,
+            59,
+            4552
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.60      0.43      0.50      5632\n     Class_1       0.77      0.84      0.80      5565\n     Class_2       0.53      0.43      0.48      5619\n     Class_3       0.64      0.65      0.64      5600\n     Class_4       0.63      0.76      0.69      5610\n     Class_5       0.71      0.77      0.74      5589\n     Class_6       0.70      0.75      0.72      5631\n     Class_7       0.67      0.73      0.70      5617\n     Class_8       0.58      0.53      0.55      5586\n     Class_9       0.82      0.82      0.82      5551\n\n    accuracy                           0.67     56000\n   macro avg       0.66      0.67      0.66     56000\nweighted avg       0.66      0.67      0.66     56000\n"
+      },
+      {
+        "model_architecture": "Bidirectional GRU",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6867142857142857,
+          "f1_macro": 0.6815437623315984,
+          "f1_weighted": 0.6812232204497702,
+          "precision_macro": 0.6817014659233658,
+          "recall_macro": 0.6870763754568145
+        },
+        "model_specifications": {
+          "parameters": 476170,
+          "parameters_millions": 0.47617,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 191.18407583236694,
+          "training_time_minutes": 3.1864012638727823,
+          "gpu_memory_peak_gb": 0.06104564666748047,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "GRU",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2516,
+            373,
+            420,
+            353,
+            469,
+            281,
+            396,
+            282,
+            397,
+            145
+          ],
+          [
+            237,
+            4726,
+            136,
+            145,
+            73,
+            29,
+            36,
+            107,
+            44,
+            32
+          ],
+          [
+            311,
+            208,
+            2527,
+            279,
+            166,
+            241,
+            408,
+            874,
+            471,
+            134
+          ],
+          [
+            125,
+            264,
+            181,
+            3835,
+            342,
+            165,
+            106,
+            116,
+            289,
+            177
+          ],
+          [
+            107,
+            76,
+            127,
+            281,
+            4242,
+            256,
+            104,
+            24,
+            332,
+            61
+          ],
+          [
+            105,
+            33,
+            105,
+            111,
+            359,
+            4407,
+            57,
+            192,
+            157,
+            63
+          ],
+          [
+            315,
+            63,
+            242,
+            101,
+            101,
+            68,
+            4294,
+            73,
+            328,
+            46
+          ],
+          [
+            90,
+            128,
+            376,
+            114,
+            49,
+            377,
+            74,
+            4202,
+            146,
+            61
+          ],
+          [
+            180,
+            82,
+            398,
+            331,
+            641,
+            216,
+            422,
+            160,
+            3068,
+            88
+          ],
+          [
+            88,
+            64,
+            86,
+            234,
+            83,
+            131,
+            69,
+            101,
+            56,
+            4639
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.62      0.45      0.52      5632\n     Class_1       0.79      0.85      0.82      5565\n     Class_2       0.55      0.45      0.49      5619\n     Class_3       0.66      0.68      0.67      5600\n     Class_4       0.65      0.76      0.70      5610\n     Class_5       0.71      0.79      0.75      5589\n     Class_6       0.72      0.76      0.74      5631\n     Class_7       0.69      0.75      0.72      5617\n     Class_8       0.58      0.55      0.56      5586\n     Class_9       0.85      0.84      0.84      5551\n\n    accuracy                           0.69     56000\n   macro avg       0.68      0.69      0.68     56000\nweighted avg       0.68      0.69      0.68     56000\n"
+      },
+      {
+        "model_architecture": "Bidirectional LSTM",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6889464285714286,
+          "f1_macro": 0.683522506899497,
+          "f1_weighted": 0.6832032509154553,
+          "precision_macro": 0.6830025104910259,
+          "recall_macro": 0.6893075641577064
+        },
+        "model_specifications": {
+          "parameters": 633866,
+          "parameters_millions": 0.633866,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 197.44525241851807,
+          "training_time_minutes": 3.290754206975301,
+          "gpu_memory_peak_gb": 0.06509637832641602,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "LSTM",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2535,
+            378,
+            418,
+            357,
+            461,
+            275,
+            406,
+            271,
+            378,
+            153
+          ],
+          [
+            240,
+            4737,
+            131,
+            138,
+            78,
+            30,
+            39,
+            100,
+            41,
+            31
+          ],
+          [
+            348,
+            214,
+            2530,
+            255,
+            159,
+            243,
+            406,
+            870,
+            454,
+            140
+          ],
+          [
+            154,
+            260,
+            188,
+            3820,
+            330,
+            147,
+            119,
+            116,
+            275,
+            191
+          ],
+          [
+            119,
+            75,
+            124,
+            265,
+            4261,
+            243,
+            111,
+            24,
+            332,
+            56
+          ],
+          [
+            106,
+            35,
+            121,
+            100,
+            349,
+            4377,
+            60,
+            203,
+            162,
+            76
+          ],
+          [
+            297,
+            58,
+            234,
+            106,
+            89,
+            67,
+            4354,
+            69,
+            305,
+            52
+          ],
+          [
+            97,
+            135,
+            352,
+            97,
+            50,
+            377,
+            74,
+            4220,
+            144,
+            71
+          ],
+          [
+            200,
+            77,
+            406,
+            312,
+            640,
+            209,
+            421,
+            169,
+            3049,
+            103
+          ],
+          [
+            91,
+            61,
+            76,
+            209,
+            81,
+            120,
+            71,
+            94,
+            50,
+            4698
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.61      0.45      0.52      5632\n     Class_1       0.79      0.85      0.82      5565\n     Class_2       0.55      0.45      0.50      5619\n     Class_3       0.68      0.68      0.68      5600\n     Class_4       0.66      0.76      0.70      5610\n     Class_5       0.72      0.78      0.75      5589\n     Class_6       0.72      0.77      0.74      5631\n     Class_7       0.69      0.75      0.72      5617\n     Class_8       0.59      0.55      0.57      5586\n     Class_9       0.84      0.85      0.84      5551\n\n    accuracy                           0.69     56000\n   macro avg       0.68      0.69      0.68     56000\nweighted avg       0.68      0.69      0.68     56000\n"
+      },
+      {
+        "model_architecture": "DNN",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.6142142857142857,
+          "f1_macro": 0.6100009235908238,
+          "f1_weighted": 0.6097946469578814,
+          "precision_macro": 0.6098692659127425,
+          "recall_macro": 0.614438165991661
+        },
+        "model_specifications": {
+          "parameters": 187146,
+          "parameters_millions": 0.187146,
+          "architecture_type": "Feedforward"
+        },
+        "training_details": {
+          "training_time_seconds": 153.5859968662262,
+          "training_time_minutes": 2.559766614437103,
+          "gpu_memory_peak_gb": 0.021556377410888672,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "hidden_dims": [
+            512,
+            256
+          ]
+        },
+        "confusion_matrix": [
+          [
+            2658,
+            378,
+            369,
+            311,
+            470,
+            269,
+            391,
+            257,
+            351,
+            178
+          ],
+          [
+            273,
+            4447,
+            169,
+            177,
+            88,
+            62,
+            56,
+            159,
+            47,
+            87
+          ],
+          [
+            396,
+            233,
+            2262,
+            278,
+            174,
+            243,
+            490,
+            829,
+            494,
+            220
+          ],
+          [
+            220,
+            275,
+            187,
+            3105,
+            451,
+            218,
+            148,
+            166,
+            365,
+            465
+          ],
+          [
+            136,
+            72,
+            92,
+            325,
+            4175,
+            246,
+            118,
+            38,
+            305,
+            103
+          ],
+          [
+            126,
+            49,
+            152,
+            153,
+            467,
+            3933,
+            109,
+            294,
+            179,
+            127
+          ],
+          [
+            341,
+            69,
+            261,
+            169,
+            157,
+            132,
+            3814,
+            139,
+            361,
+            188
+          ],
+          [
+            156,
+            174,
+            415,
+            173,
+            73,
+            434,
+            150,
+            3647,
+            193,
+            202
+          ],
+          [
+            230,
+            78,
+            380,
+            439,
+            702,
+            233,
+            448,
+            201,
+            2696,
+            179
+          ],
+          [
+            152,
+            112,
+            168,
+            529,
+            165,
+            249,
+            186,
+            233,
+            98,
+            3659
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.57      0.47      0.52      5632\n     Class_1       0.76      0.80      0.78      5565\n     Class_2       0.51      0.40      0.45      5619\n     Class_3       0.55      0.55      0.55      5600\n     Class_4       0.60      0.74      0.67      5610\n     Class_5       0.65      0.70      0.68      5589\n     Class_6       0.65      0.68      0.66      5631\n     Class_7       0.61      0.65      0.63      5617\n     Class_8       0.53      0.48      0.51      5586\n     Class_9       0.68      0.66      0.67      5551\n\n    accuracy                           0.61     56000\n   macro avg       0.61      0.61      0.61     56000\nweighted avg       0.61      0.61      0.61     56000\n"
+      },
+      {
+        "model_architecture": "SimpleRNN",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.588125,
+          "f1_macro": 0.5816984984905739,
+          "f1_weighted": 0.581521626555743,
+          "precision_macro": 0.5843376683322752,
+          "recall_macro": 0.5883748513249052
+        },
+        "model_specifications": {
+          "parameters": 226314,
+          "parameters_millions": 0.226314,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 159.6720848083496,
+          "training_time_minutes": 2.6612014134724933,
+          "gpu_memory_peak_gb": 0.02345895767211914,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "RNN",
+          "bidirectional": false,
+          "hidden_dim": 256
+        },
+        "confusion_matrix": [
+          [
+            2265,
+            467,
+            424,
+            385,
+            462,
+            311,
+            461,
+            292,
+            315,
+            250
+          ],
+          [
+            227,
+            4468,
+            174,
+            183,
+            79,
+            64,
+            61,
+            183,
+            33,
+            93
+          ],
+          [
+            299,
+            292,
+            2106,
+            337,
+            182,
+            281,
+            521,
+            851,
+            438,
+            312
+          ],
+          [
+            115,
+            344,
+            169,
+            3019,
+            442,
+            262,
+            175,
+            189,
+            323,
+            562
+          ],
+          [
+            88,
+            94,
+            103,
+            415,
+            4026,
+            313,
+            137,
+            40,
+            253,
+            141
+          ],
+          [
+            82,
+            70,
+            147,
+            190,
+            449,
+            3832,
+            129,
+            347,
+            153,
+            190
+          ],
+          [
+            267,
+            91,
+            252,
+            203,
+            122,
+            192,
+            3745,
+            146,
+            363,
+            250
+          ],
+          [
+            117,
+            246,
+            399,
+            193,
+            68,
+            483,
+            154,
+            3512,
+            163,
+            282
+          ],
+          [
+            144,
+            101,
+            389,
+            533,
+            690,
+            291,
+            478,
+            210,
+            2510,
+            240
+          ],
+          [
+            102,
+            166,
+            169,
+            632,
+            166,
+            296,
+            212,
+            270,
+            86,
+            3452
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.61      0.40      0.49      5632\n     Class_1       0.70      0.80      0.75      5565\n     Class_2       0.49      0.37      0.42      5619\n     Class_3       0.50      0.54      0.52      5600\n     Class_4       0.60      0.72      0.65      5610\n     Class_5       0.61      0.69      0.64      5589\n     Class_6       0.62      0.67      0.64      5631\n     Class_7       0.58      0.63      0.60      5617\n     Class_8       0.54      0.45      0.49      5586\n     Class_9       0.60      0.62      0.61      5551\n\n    accuracy                           0.59     56000\n   macro avg       0.58      0.59      0.58     56000\nweighted avg       0.58      0.59      0.58     56000\n"
+      },
+      {
+        "model_architecture": "GRU",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.6137857142857143,
+          "f1_macro": 0.6088764480266367,
+          "f1_weighted": 0.6086709125563742,
+          "precision_macro": 0.609643713319838,
+          "recall_macro": 0.6140420676840951
+        },
+        "model_specifications": {
+          "parameters": 672778,
+          "parameters_millions": 0.672778,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 173.18593740463257,
+          "training_time_minutes": 2.8864322900772095,
+          "gpu_memory_peak_gb": 0.03248167037963867,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "GRU",
+          "bidirectional": false,
+          "hidden_dim": 256
+        },
+        "confusion_matrix": [
+          [
+            2491,
+            393,
+            385,
+            351,
+            452,
+            286,
+            414,
+            280,
+            362,
+            218
+          ],
+          [
+            228,
+            4466,
+            181,
+            186,
+            89,
+            52,
+            55,
+            169,
+            45,
+            94
+          ],
+          [
+            321,
+            262,
+            2242,
+            304,
+            161,
+            261,
+            513,
+            845,
+            469,
+            241
+          ],
+          [
+            154,
+            284,
+            181,
+            3166,
+            395,
+            229,
+            165,
+            172,
+            353,
+            501
+          ],
+          [
+            102,
+            80,
+            123,
+            376,
+            4084,
+            267,
+            119,
+            45,
+            310,
+            104
+          ],
+          [
+            90,
+            64,
+            135,
+            178,
+            424,
+            3945,
+            117,
+            310,
+            188,
+            138
+          ],
+          [
+            303,
+            65,
+            250,
+            187,
+            136,
+            145,
+            3844,
+            150,
+            356,
+            195
+          ],
+          [
+            127,
+            195,
+            382,
+            173,
+            61,
+            433,
+            149,
+            3674,
+            188,
+            235
+          ],
+          [
+            174,
+            90,
+            383,
+            479,
+            639,
+            240,
+            455,
+            213,
+            2725,
+            188
+          ],
+          [
+            103,
+            122,
+            159,
+            524,
+            137,
+            245,
+            179,
+            241,
+            106,
+            3735
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.61      0.44      0.51      5632\n     Class_1       0.74      0.80      0.77      5565\n     Class_2       0.51      0.40      0.45      5619\n     Class_3       0.53      0.57      0.55      5600\n     Class_4       0.62      0.73      0.67      5610\n     Class_5       0.65      0.71      0.67      5589\n     Class_6       0.64      0.68      0.66      5631\n     Class_7       0.60      0.65      0.63      5617\n     Class_8       0.53      0.49      0.51      5586\n     Class_9       0.66      0.67      0.67      5551\n\n    accuracy                           0.61     56000\n   macro avg       0.61      0.61      0.61     56000\nweighted avg       0.61      0.61      0.61     56000\n"
+      },
+      {
+        "model_architecture": "LSTM",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.6151785714285715,
+          "f1_macro": 0.610545311498924,
+          "f1_weighted": 0.6103401767368511,
+          "precision_macro": 0.6107055599139934,
+          "recall_macro": 0.6154327380259603
+        },
+        "model_specifications": {
+          "parameters": 896010,
+          "parameters_millions": 0.89601,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 179.54693627357483,
+          "training_time_minutes": 2.992448937892914,
+          "gpu_memory_peak_gb": 0.038571834564208984,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "LSTM",
+          "bidirectional": false,
+          "hidden_dim": 256
+        },
+        "confusion_matrix": [
+          [
+            2510,
+            387,
+            402,
+            351,
+            434,
+            276,
+            414,
+            266,
+            356,
+            236
+          ],
+          [
+            248,
+            4465,
+            174,
+            180,
+            78,
+            52,
+            53,
+            173,
+            46,
+            96
+          ],
+          [
+            333,
+            232,
+            2258,
+            306,
+            148,
+            253,
+            487,
+            873,
+            482,
+            247
+          ],
+          [
+            166,
+            261,
+            180,
+            3201,
+            386,
+            214,
+            167,
+            179,
+            349,
+            497
+          ],
+          [
+            103,
+            83,
+            112,
+            354,
+            4091,
+            272,
+            112,
+            42,
+            323,
+            118
+          ],
+          [
+            97,
+            53,
+            134,
+            172,
+            421,
+            3916,
+            127,
+            317,
+            183,
+            169
+          ],
+          [
+            313,
+            69,
+            294,
+            200,
+            120,
+            137,
+            3838,
+            135,
+            343,
+            182
+          ],
+          [
+            120,
+            171,
+            422,
+            171,
+            72,
+            408,
+            135,
+            3701,
+            185,
+            232
+          ],
+          [
+            190,
+            94,
+            396,
+            459,
+            624,
+            242,
+            452,
+            202,
+            2713,
+            214
+          ],
+          [
+            117,
+            124,
+            153,
+            529,
+            132,
+            232,
+            160,
+            245,
+            102,
+            3757
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.60      0.45      0.51      5632\n     Class_1       0.75      0.80      0.78      5565\n     Class_2       0.50      0.40      0.45      5619\n     Class_3       0.54      0.57      0.56      5600\n     Class_4       0.63      0.73      0.68      5610\n     Class_5       0.65      0.70      0.68      5589\n     Class_6       0.65      0.68      0.66      5631\n     Class_7       0.60      0.66      0.63      5617\n     Class_8       0.53      0.49      0.51      5586\n     Class_9       0.65      0.68      0.67      5551\n\n    accuracy                           0.62     56000\n   macro avg       0.61      0.62      0.61     56000\nweighted avg       0.61      0.62      0.61     56000\n"
+      },
+      {
+        "model_architecture": "Bidirectional SimpleRNN",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.5897678571428572,
+          "f1_macro": 0.5831579099495312,
+          "f1_weighted": 0.5829769749466946,
+          "precision_macro": 0.5856284605646175,
+          "recall_macro": 0.5900320030009526
+        },
+        "model_specifications": {
+          "parameters": 160778,
+          "parameters_millions": 0.160778,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 179.13709926605225,
+          "training_time_minutes": 2.985618321100871,
+          "gpu_memory_peak_gb": 0.05373239517211914,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "RNN",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2298,
+            450,
+            389,
+            384,
+            462,
+            282,
+            483,
+            274,
+            333,
+            277
+          ],
+          [
+            240,
+            4441,
+            162,
+            182,
+            78,
+            56,
+            68,
+            192,
+            30,
+            116
+          ],
+          [
+            314,
+            300,
+            2062,
+            320,
+            178,
+            256,
+            560,
+            835,
+            447,
+            347
+          ],
+          [
+            142,
+            335,
+            162,
+            3012,
+            444,
+            229,
+            174,
+            167,
+            315,
+            620
+          ],
+          [
+            88,
+            87,
+            100,
+            414,
+            4052,
+            281,
+            146,
+            37,
+            249,
+            156
+          ],
+          [
+            78,
+            71,
+            136,
+            204,
+            465,
+            3779,
+            139,
+            330,
+            156,
+            231
+          ],
+          [
+            272,
+            93,
+            249,
+            197,
+            137,
+            154,
+            3792,
+            133,
+            324,
+            280
+          ],
+          [
+            123,
+            237,
+            396,
+            192,
+            68,
+            460,
+            170,
+            3480,
+            172,
+            319
+          ],
+          [
+            157,
+            98,
+            360,
+            521,
+            700,
+            253,
+            513,
+            206,
+            2509,
+            269
+          ],
+          [
+            99,
+            156,
+            144,
+            597,
+            158,
+            251,
+            213,
+            249,
+            82,
+            3602
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.60      0.41      0.49      5632\n     Class_1       0.71      0.80      0.75      5565\n     Class_2       0.50      0.37      0.42      5619\n     Class_3       0.50      0.54      0.52      5600\n     Class_4       0.60      0.72      0.66      5610\n     Class_5       0.63      0.68      0.65      5589\n     Class_6       0.61      0.67      0.64      5631\n     Class_7       0.59      0.62      0.60      5617\n     Class_8       0.54      0.45      0.49      5586\n     Class_9       0.58      0.65      0.61      5551\n\n    accuracy                           0.59     56000\n   macro avg       0.59      0.59      0.58     56000\nweighted avg       0.59      0.59      0.58     56000\n"
+      },
+      {
+        "model_architecture": "Bidirectional GRU",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.6131785714285715,
+          "f1_macro": 0.6079632486563045,
+          "f1_weighted": 0.6077576294420508,
+          "precision_macro": 0.60881223976539,
+          "recall_macro": 0.6134275581791814
+        },
+        "model_specifications": {
+          "parameters": 476170,
+          "parameters_millions": 0.47617,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 191.7967598438263,
+          "training_time_minutes": 3.1966126640637715,
+          "gpu_memory_peak_gb": 0.06104564666748047,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "GRU",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2480,
+            390,
+            382,
+            345,
+            459,
+            275,
+            444,
+            261,
+            379,
+            217
+          ],
+          [
+            238,
+            4469,
+            167,
+            185,
+            83,
+            55,
+            63,
+            170,
+            44,
+            91
+          ],
+          [
+            331,
+            241,
+            2207,
+            295,
+            157,
+            257,
+            515,
+            881,
+            481,
+            254
+          ],
+          [
+            155,
+            276,
+            188,
+            3165,
+            405,
+            240,
+            164,
+            167,
+            355,
+            485
+          ],
+          [
+            102,
+            83,
+            108,
+            371,
+            4100,
+            282,
+            114,
+            33,
+            310,
+            107
+          ],
+          [
+            86,
+            55,
+            137,
+            170,
+            434,
+            3946,
+            116,
+            311,
+            184,
+            150
+          ],
+          [
+            300,
+            72,
+            249,
+            190,
+            141,
+            148,
+            3858,
+            146,
+            338,
+            189
+          ],
+          [
+            125,
+            185,
+            376,
+            171,
+            63,
+            434,
+            144,
+            3721,
+            177,
+            221
+          ],
+          [
+            170,
+            96,
+            378,
+            473,
+            640,
+            245,
+            489,
+            214,
+            2688,
+            193
+          ],
+          [
+            117,
+            118,
+            141,
+            541,
+            138,
+            251,
+            188,
+            259,
+            94,
+            3704
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.60      0.44      0.51      5632\n     Class_1       0.75      0.80      0.77      5565\n     Class_2       0.51      0.39      0.44      5619\n     Class_3       0.54      0.57      0.55      5600\n     Class_4       0.62      0.73      0.67      5610\n     Class_5       0.64      0.71      0.67      5589\n     Class_6       0.63      0.69      0.66      5631\n     Class_7       0.60      0.66      0.63      5617\n     Class_8       0.53      0.48      0.51      5586\n     Class_9       0.66      0.67      0.66      5551\n\n    accuracy                           0.61     56000\n   macro avg       0.61      0.61      0.61     56000\nweighted avg       0.61      0.61      0.61     56000\n"
+      },
+      {
+        "model_architecture": "Bidirectional LSTM",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.6145714285714285,
+          "f1_macro": 0.6100018300520628,
+          "f1_weighted": 0.6097928711113185,
+          "precision_macro": 0.6106550169448133,
+          "recall_macro": 0.6148214796374087
+        },
+        "model_specifications": {
+          "parameters": 633866,
+          "parameters_millions": 0.633866,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 200.06515336036682,
+          "training_time_minutes": 3.3344192226727802,
+          "gpu_memory_peak_gb": 0.06509637832641602,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "LSTM",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2457,
+            386,
+            444,
+            360,
+            447,
+            276,
+            410,
+            266,
+            373,
+            213
+          ],
+          [
+            243,
+            4434,
+            180,
+            187,
+            79,
+            61,
+            58,
+            180,
+            47,
+            96
+          ],
+          [
+            317,
+            234,
+            2302,
+            283,
+            155,
+            267,
+            490,
+            858,
+            474,
+            239
+          ],
+          [
+            150,
+            275,
+            210,
+            3172,
+            370,
+            241,
+            171,
+            172,
+            349,
+            490
+          ],
+          [
+            100,
+            72,
+            111,
+            348,
+            4097,
+            285,
+            114,
+            42,
+            335,
+            106
+          ],
+          [
+            85,
+            52,
+            141,
+            181,
+            415,
+            3972,
+            105,
+            306,
+            190,
+            142
+          ],
+          [
+            301,
+            67,
+            290,
+            185,
+            145,
+            147,
+            3831,
+            131,
+            353,
+            181
+          ],
+          [
+            113,
+            159,
+            417,
+            168,
+            64,
+            454,
+            133,
+            3720,
+            190,
+            199
+          ],
+          [
+            185,
+            96,
+            400,
+            445,
+            648,
+            249,
+            460,
+            217,
+            2701,
+            185
+          ],
+          [
+            104,
+            111,
+            161,
+            532,
+            139,
+            238,
+            186,
+            252,
+            98,
+            3730
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.61      0.44      0.51      5632\n     Class_1       0.75      0.80      0.77      5565\n     Class_2       0.49      0.41      0.45      5619\n     Class_3       0.54      0.57      0.55      5600\n     Class_4       0.62      0.73      0.67      5610\n     Class_5       0.64      0.71      0.67      5589\n     Class_6       0.64      0.68      0.66      5631\n     Class_7       0.61      0.66      0.63      5617\n     Class_8       0.53      0.48      0.51      5586\n     Class_9       0.67      0.67      0.67      5551\n\n    accuracy                           0.61     56000\n   macro avg       0.61      0.61      0.61     56000\nweighted avg       0.61      0.61      0.61     56000\n"
+      }
+    ],
+    "failed_experiments": [],
+    "performance_analysis": {
+      "summary_statistics": {
+        "mean_f1_macro": 0.6393637950818787,
+        "std_f1_macro": 0.0390593328932816,
+        "min_f1_macro": 0.5816984984905739,
+        "max_f1_macro": 0.683522506899497,
+        "performance_range": 0.10182400840892314
+      },
+      "efficiency_analysis": {
+        "mean_training_time": 176.76823493412562,
+        "total_training_time": 2474.755289077759,
+        "mean_parameters": 464723.14285714284,
+        "efficiency_ratio": 0.21701765432691358
+      },
+      "best_performing_experiment": {
+        "model_architecture": "Bidirectional LSTM",
+        "representation": "GLOVE",
+        "performance_metrics": {
+          "accuracy": 0.6889464285714286,
+          "f1_macro": 0.683522506899497,
+          "f1_weighted": 0.6832032509154553,
+          "precision_macro": 0.6830025104910259,
+          "recall_macro": 0.6893075641577064
+        },
+        "model_specifications": {
+          "parameters": 633866,
+          "parameters_millions": 0.633866,
+          "architecture_type": "Recurrent"
+        },
+        "training_details": {
+          "training_time_seconds": 197.44525241851807,
+          "training_time_minutes": 3.290754206975301,
+          "gpu_memory_peak_gb": 0.06509637832641602,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "rnn_type": "LSTM",
+          "bidirectional": true,
+          "hidden_dim": 128
+        },
+        "confusion_matrix": [
+          [
+            2535,
+            378,
+            418,
+            357,
+            461,
+            275,
+            406,
+            271,
+            378,
+            153
+          ],
+          [
+            240,
+            4737,
+            131,
+            138,
+            78,
+            30,
+            39,
+            100,
+            41,
+            31
+          ],
+          [
+            348,
+            214,
+            2530,
+            255,
+            159,
+            243,
+            406,
+            870,
+            454,
+            140
+          ],
+          [
+            154,
+            260,
+            188,
+            3820,
+            330,
+            147,
+            119,
+            116,
+            275,
+            191
+          ],
+          [
+            119,
+            75,
+            124,
+            265,
+            4261,
+            243,
+            111,
+            24,
+            332,
+            56
+          ],
+          [
+            106,
+            35,
+            121,
+            100,
+            349,
+            4377,
+            60,
+            203,
+            162,
+            76
+          ],
+          [
+            297,
+            58,
+            234,
+            106,
+            89,
+            67,
+            4354,
+            69,
+            305,
+            52
+          ],
+          [
+            97,
+            135,
+            352,
+            97,
+            50,
+            377,
+            74,
+            4220,
+            144,
+            71
+          ],
+          [
+            200,
+            77,
+            406,
+            312,
+            640,
+            209,
+            421,
+            169,
+            3049,
+            103
+          ],
+          [
+            91,
+            61,
+            76,
+            209,
+            81,
+            120,
+            71,
+            94,
+            50,
+            4698
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.61      0.45      0.52      5632\n     Class_1       0.79      0.85      0.82      5565\n     Class_2       0.55      0.45      0.50      5619\n     Class_3       0.68      0.68      0.68      5600\n     Class_4       0.66      0.76      0.70      5610\n     Class_5       0.72      0.78      0.75      5589\n     Class_6       0.72      0.77      0.74      5631\n     Class_7       0.69      0.75      0.72      5617\n     Class_8       0.59      0.55      0.57      5586\n     Class_9       0.84      0.85      0.84      5551\n\n    accuracy                           0.69     56000\n   macro avg       0.68      0.69      0.68     56000\nweighted avg       0.68      0.69      0.68     56000\n"
+      },
+      "most_efficient_experiment": {
+        "model_architecture": "DNN",
+        "representation": "WORD2VEC",
+        "performance_metrics": {
+          "accuracy": 0.6142142857142857,
+          "f1_macro": 0.6100009235908238,
+          "f1_weighted": 0.6097946469578814,
+          "precision_macro": 0.6098692659127425,
+          "recall_macro": 0.614438165991661
+        },
+        "model_specifications": {
+          "parameters": 187146,
+          "parameters_millions": 0.187146,
+          "architecture_type": "Feedforward"
+        },
+        "training_details": {
+          "training_time_seconds": 153.5859968662262,
+          "training_time_minutes": 2.559766614437103,
+          "gpu_memory_peak_gb": 0.021556377410888672,
+          "optimization_used": "AdamW with OneCycleLR scheduler"
+        },
+        "hyperparameters": {
+          "lr": 0.001,
+          "epochs": 15,
+          "batch_size": 64,
+          "hidden_dims": [
+            512,
+            256
+          ]
+        },
+        "confusion_matrix": [
+          [
+            2658,
+            378,
+            369,
+            311,
+            470,
+            269,
+            391,
+            257,
+            351,
+            178
+          ],
+          [
+            273,
+            4447,
+            169,
+            177,
+            88,
+            62,
+            56,
+            159,
+            47,
+            87
+          ],
+          [
+            396,
+            233,
+            2262,
+            278,
+            174,
+            243,
+            490,
+            829,
+            494,
+            220
+          ],
+          [
+            220,
+            275,
+            187,
+            3105,
+            451,
+            218,
+            148,
+            166,
+            365,
+            465
+          ],
+          [
+            136,
+            72,
+            92,
+            325,
+            4175,
+            246,
+            118,
+            38,
+            305,
+            103
+          ],
+          [
+            126,
+            49,
+            152,
+            153,
+            467,
+            3933,
+            109,
+            294,
+            179,
+            127
+          ],
+          [
+            341,
+            69,
+            261,
+            169,
+            157,
+            132,
+            3814,
+            139,
+            361,
+            188
+          ],
+          [
+            156,
+            174,
+            415,
+            173,
+            73,
+            434,
+            150,
+            3647,
+            193,
+            202
+          ],
+          [
+            230,
+            78,
+            380,
+            439,
+            702,
+            233,
+            448,
+            201,
+            2696,
+            179
+          ],
+          [
+            152,
+            112,
+            168,
+            529,
+            165,
+            249,
+            186,
+            233,
+            98,
+            3659
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.57      0.47      0.52      5632\n     Class_1       0.76      0.80      0.78      5565\n     Class_2       0.51      0.40      0.45      5619\n     Class_3       0.55      0.55      0.55      5600\n     Class_4       0.60      0.74      0.67      5610\n     Class_5       0.65      0.70      0.68      5589\n     Class_6       0.65      0.68      0.66      5631\n     Class_7       0.61      0.65      0.63      5617\n     Class_8       0.53      0.48      0.51      5586\n     Class_9       0.68      0.66      0.67      5551\n\n    accuracy                           0.61     56000\n   macro avg       0.61      0.61      0.61     56000\nweighted avg       0.61      0.61      0.61     56000\n"
+      },
+      "architecture_ranking": [
+        {
+          "architecture": "Bidirectional LSTM",
+          "mean_f1": 0.6467621684757798,
+          "experiments_count": 2,
+          "best_f1": 0.683522506899497
+        },
+        {
+          "architecture": "DNN",
+          "mean_f1": 0.6465023849330147,
+          "experiments_count": 2,
+          "best_f1": 0.6830038462752057
+        },
+        {
+          "architecture": "LSTM",
+          "mean_f1": 0.6463793096945627,
+          "experiments_count": 2,
+          "best_f1": 0.6822133078902013
+        },
+        {
+          "architecture": "GRU",
+          "mean_f1": 0.6450411950942441,
+          "experiments_count": 2,
+          "best_f1": 0.6812059421618514
+        },
+        {
+          "architecture": "Bidirectional GRU",
+          "mean_f1": 0.6447535054939515,
+          "experiments_count": 2,
+          "best_f1": 0.6815437623315984
+        },
+        {
+          "architecture": "Bidirectional SimpleRNN",
+          "mean_f1": 0.6238052599616054,
+          "experiments_count": 2,
+          "best_f1": 0.6644526099736796
+        },
+        {
+          "architecture": "SimpleRNN",
+          "mean_f1": 0.6223027419199928,
+          "experiments_count": 2,
+          "best_f1": 0.6629069853494117
+        }
+      ]
+    },
+    "architectural_analysis": {},
+    "gpu_optimization_details": {
+      "framework": "PyTorch with CUDA",
+      "mixed_precision": "FP16 enabled for memory efficiency",
+      "batch_size_optimization": "Dynamic scaling based on GPU memory",
+      "memory_management": "Aggressive cleanup between experiments",
+      "parallel_processing": "GPU tensor operations with CPU data loading",
+      "optimization_techniques": [
+        "GPU memory fraction control (90%)",
+        "CUDNN benchmark optimization",
+        "Non-blocking data transfer",
+        "Gradient accumulation for effective large batch sizes"
+      ]
+    }
+  },
+  "transformer_results": {
+    "experimental_design": {
+      "total_planned_experiments": 3,
+      "models_tested": [
+        "BERT-base-uncased",
+        "DistilBERT-base-uncased",
+        "RoBERTa-base"
+      ],
+      "input_representation": "Subword tokenization with attention mechanisms",
+      "fine_tuning_approach": "Full model fine-tuning with classification head",
+      "optimization_framework": "Transformers library with PyTorch backend",
+      "memory_optimization": "Gradient accumulation, FP16, reduced batch sizes"
+    },
+    "completed_experiments": [
+      {
+        "model_name": "bert-base-uncased (Transformer)",
+        "model_base": "bert-base-uncased",
+        "representation": "Subword Embeddings",
+        "performance_metrics": {
+          "accuracy": 0.7460357142857142,
+          "f1_macro": 0.7418481012150298,
+          "f1_weighted": 0.7415383527953309,
+          "precision_macro": 0.7408284910034734,
+          "recall_macro": 0.7463988247643888,
+          "eval_loss": 0.7896520495414734
+        },
+        "model_specifications": {
+          "parameters": 109489930,
+          "parameters_millions": 109.48993,
+          "architecture_family": "Transformer-based",
+          "attention_mechanism": "Multi-head self-attention"
+        },
+        "training_details": {
+          "training_time_seconds": 7005.871020078659,
+          "training_time_minutes": 116.76451700131098,
+          "training_time_hours": 1.946075283355183,
+          "gpu_memory_allocated_gb": 1.244870662689209,
+          "optimization_strategy": "AdamW with linear warmup and decay"
+        },
+        "hyperparameters": {
+          "learning_rate": 2e-05,
+          "batch_size": 4,
+          "max_length": 128,
+          "epochs": 3,
+          "warmup_ratio": 0.1
+        },
+        "confusion_matrix": [
+          [
+            1382,
+            189,
+            218,
+            164,
+            184,
+            113,
+            176,
+            140,
+            202,
+            48
+          ],
+          [
+            100,
+            2500,
+            34,
+            49,
+            25,
+            8,
+            11,
+            29,
+            19,
+            7
+          ],
+          [
+            153,
+            82,
+            1525,
+            93,
+            52,
+            68,
+            161,
+            432,
+            189,
+            54
+          ],
+          [
+            93,
+            87,
+            64,
+            2146,
+            105,
+            43,
+            34,
+            41,
+            110,
+            77
+          ],
+          [
+            74,
+            32,
+            44,
+            85,
+            2253,
+            94,
+            32,
+            8,
+            164,
+            19
+          ],
+          [
+            57,
+            6,
+            45,
+            34,
+            161,
+            2262,
+            17,
+            89,
+            86,
+            38
+          ],
+          [
+            132,
+            15,
+            99,
+            26,
+            33,
+            25,
+            2301,
+            26,
+            134,
+            25
+          ],
+          [
+            54,
+            43,
+            176,
+            31,
+            14,
+            130,
+            16,
+            2264,
+            61,
+            19
+          ],
+          [
+            114,
+            34,
+            219,
+            144,
+            237,
+            71,
+            157,
+            61,
+            1722,
+            34
+          ],
+          [
+            27,
+            29,
+            23,
+            57,
+            15,
+            30,
+            8,
+            39,
+            14,
+            2534
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.63      0.49      0.55      2816\n     Class_1       0.83      0.90      0.86      2782\n     Class_2       0.62      0.54      0.58      2809\n     Class_3       0.76      0.77      0.76      2800\n     Class_4       0.73      0.80      0.77      2805\n     Class_5       0.80      0.81      0.80      2795\n     Class_6       0.79      0.82      0.80      2816\n     Class_7       0.72      0.81      0.76      2808\n     Class_8       0.64      0.62      0.63      2793\n     Class_9       0.89      0.91      0.90      2776\n\n    accuracy                           0.75     28000\n   macro avg       0.74      0.75      0.74     28000\nweighted avg       0.74      0.75      0.74     28000\n"
+      },
+      {
+        "model_name": "distilbert-base-uncased (Transformer)",
+        "model_base": "distilbert-base-uncased",
+        "representation": "Subword Embeddings",
+        "performance_metrics": {
+          "accuracy": 0.7400714285714286,
+          "f1_macro": 0.7355049925391429,
+          "f1_weighted": 0.7351926305005964,
+          "precision_macro": 0.7358689741408262,
+          "recall_macro": 0.7404145396079906,
+          "eval_loss": 0.8061259984970093
+        },
+        "model_specifications": {
+          "parameters": 66961162,
+          "parameters_millions": 66.961162,
+          "architecture_family": "Transformer-based",
+          "attention_mechanism": "Multi-head self-attention"
+        },
+        "training_details": {
+          "training_time_seconds": 2503.5668127536774,
+          "training_time_minutes": 41.72611354589462,
+          "training_time_hours": 0.6954352257649103,
+          "gpu_memory_allocated_gb": 0.7693266868591309,
+          "optimization_strategy": "AdamW with linear warmup and decay"
+        },
+        "hyperparameters": {
+          "learning_rate": 2e-05,
+          "batch_size": 4,
+          "max_length": 128,
+          "epochs": 3,
+          "warmup_ratio": 0.1
+        },
+        "confusion_matrix": [
+          [
+            1351,
+            173,
+            214,
+            177,
+            166,
+            144,
+            201,
+            126,
+            218,
+            46
+          ],
+          [
+            114,
+            2447,
+            42,
+            60,
+            23,
+            15,
+            24,
+            29,
+            19,
+            9
+          ],
+          [
+            145,
+            71,
+            1479,
+            113,
+            52,
+            85,
+            198,
+            432,
+            199,
+            35
+          ],
+          [
+            69,
+            89,
+            52,
+            2129,
+            100,
+            67,
+            43,
+            58,
+            134,
+            59
+          ],
+          [
+            51,
+            41,
+            55,
+            91,
+            2170,
+            149,
+            41,
+            8,
+            189,
+            10
+          ],
+          [
+            32,
+            6,
+            46,
+            37,
+            94,
+            2374,
+            24,
+            72,
+            89,
+            21
+          ],
+          [
+            110,
+            9,
+            90,
+            32,
+            25,
+            21,
+            2365,
+            21,
+            127,
+            16
+          ],
+          [
+            46,
+            41,
+            177,
+            32,
+            10,
+            153,
+            32,
+            2245,
+            58,
+            14
+          ],
+          [
+            97,
+            33,
+            224,
+            139,
+            224,
+            107,
+            194,
+            70,
+            1684,
+            21
+          ],
+          [
+            26,
+            24,
+            31,
+            71,
+            19,
+            54,
+            20,
+            39,
+            14,
+            2478
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.66      0.48      0.56      2816\n     Class_1       0.83      0.88      0.86      2782\n     Class_2       0.61      0.53      0.57      2809\n     Class_3       0.74      0.76      0.75      2800\n     Class_4       0.75      0.77      0.76      2805\n     Class_5       0.75      0.85      0.80      2795\n     Class_6       0.75      0.84      0.79      2816\n     Class_7       0.72      0.80      0.76      2808\n     Class_8       0.62      0.60      0.61      2793\n     Class_9       0.91      0.89      0.90      2776\n\n    accuracy                           0.74     28000\n   macro avg       0.74      0.74      0.74     28000\nweighted avg       0.74      0.74      0.74     28000\n"
+      },
+      {
+        "model_name": "roberta-base (Transformer)",
+        "model_base": "roberta-base",
+        "representation": "Subword Embeddings",
+        "performance_metrics": {
+          "accuracy": 0.7410357142857142,
+          "f1_macro": 0.7384070115312381,
+          "f1_weighted": 0.7380956942406769,
+          "precision_macro": 0.7381774921241597,
+          "recall_macro": 0.74135585005061,
+          "eval_loss": 0.8112754821777344
+        },
+        "model_specifications": {
+          "parameters": 124653322,
+          "parameters_millions": 124.653322,
+          "architecture_family": "Transformer-based",
+          "attention_mechanism": "Multi-head self-attention"
+        },
+        "training_details": {
+          "training_time_seconds": 7456.072594165802,
+          "training_time_minutes": 124.26787656943003,
+          "training_time_hours": 2.071131276157167,
+          "gpu_memory_allocated_gb": 1.4157614707946777,
+          "optimization_strategy": "AdamW with linear warmup and decay"
+        },
+        "hyperparameters": {
+          "learning_rate": 2e-05,
+          "batch_size": 4,
+          "max_length": 128,
+          "epochs": 3,
+          "warmup_ratio": 0.1
+        },
+        "confusion_matrix": [
+          [
+            1507,
+            135,
+            159,
+            169,
+            193,
+            101,
+            141,
+            138,
+            209,
+            64
+          ],
+          [
+            170,
+            2365,
+            41,
+            76,
+            32,
+            9,
+            13,
+            43,
+            22,
+            11
+          ],
+          [
+            214,
+            60,
+            1450,
+            107,
+            60,
+            65,
+            164,
+            439,
+            205,
+            45
+          ],
+          [
+            98,
+            56,
+            65,
+            2118,
+            99,
+            52,
+            48,
+            52,
+            142,
+            70
+          ],
+          [
+            75,
+            22,
+            36,
+            83,
+            2258,
+            106,
+            31,
+            14,
+            168,
+            12
+          ],
+          [
+            63,
+            2,
+            33,
+            29,
+            126,
+            2323,
+            17,
+            92,
+            86,
+            24
+          ],
+          [
+            193,
+            9,
+            102,
+            32,
+            40,
+            23,
+            2253,
+            29,
+            120,
+            15
+          ],
+          [
+            74,
+            36,
+            146,
+            34,
+            11,
+            150,
+            26,
+            2244,
+            61,
+            26
+          ],
+          [
+            136,
+            19,
+            182,
+            136,
+            234,
+            77,
+            170,
+            74,
+            1734,
+            31
+          ],
+          [
+            38,
+            21,
+            25,
+            77,
+            18,
+            45,
+            9,
+            28,
+            18,
+            2497
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.59      0.54      0.56      2816\n     Class_1       0.87      0.85      0.86      2782\n     Class_2       0.65      0.52      0.57      2809\n     Class_3       0.74      0.76      0.75      2800\n     Class_4       0.74      0.80      0.77      2805\n     Class_5       0.79      0.83      0.81      2795\n     Class_6       0.78      0.80      0.79      2816\n     Class_7       0.71      0.80      0.75      2808\n     Class_8       0.63      0.62      0.62      2793\n     Class_9       0.89      0.90      0.90      2776\n\n    accuracy                           0.74     28000\n   macro avg       0.74      0.74      0.74     28000\nweighted avg       0.74      0.74      0.74     28000\n"
+      }
+    ],
+    "failed_experiments": [],
+    "performance_analysis": {
+      "summary_statistics": {
+        "mean_f1_macro": 0.7385867017618036,
+        "std_f1_macro": 0.0025926785830807245,
+        "min_f1_macro": 0.7355049925391429,
+        "max_f1_macro": 0.7418481012150298,
+        "performance_improvement_vs_mean": 0.441572999547172
+      },
+      "computational_analysis": {
+        "mean_training_time_hours": 1.5708805950924203,
+        "total_training_time_hours": 4.712641785277261,
+        "mean_parameters_millions": 100.368138,
+        "parameter_efficiency": 0.007358776564748104
+      },
+      "best_performing_experiment": {
+        "model_name": "bert-base-uncased (Transformer)",
+        "model_base": "bert-base-uncased",
+        "representation": "Subword Embeddings",
+        "performance_metrics": {
+          "accuracy": 0.7460357142857142,
+          "f1_macro": 0.7418481012150298,
+          "f1_weighted": 0.7415383527953309,
+          "precision_macro": 0.7408284910034734,
+          "recall_macro": 0.7463988247643888,
+          "eval_loss": 0.7896520495414734
+        },
+        "model_specifications": {
+          "parameters": 109489930,
+          "parameters_millions": 109.48993,
+          "architecture_family": "Transformer-based",
+          "attention_mechanism": "Multi-head self-attention"
+        },
+        "training_details": {
+          "training_time_seconds": 7005.871020078659,
+          "training_time_minutes": 116.76451700131098,
+          "training_time_hours": 1.946075283355183,
+          "gpu_memory_allocated_gb": 1.244870662689209,
+          "optimization_strategy": "AdamW with linear warmup and decay"
+        },
+        "hyperparameters": {
+          "learning_rate": 2e-05,
+          "batch_size": 4,
+          "max_length": 128,
+          "epochs": 3,
+          "warmup_ratio": 0.1
+        },
+        "confusion_matrix": [
+          [
+            1382,
+            189,
+            218,
+            164,
+            184,
+            113,
+            176,
+            140,
+            202,
+            48
+          ],
+          [
+            100,
+            2500,
+            34,
+            49,
+            25,
+            8,
+            11,
+            29,
+            19,
+            7
+          ],
+          [
+            153,
+            82,
+            1525,
+            93,
+            52,
+            68,
+            161,
+            432,
+            189,
+            54
+          ],
+          [
+            93,
+            87,
+            64,
+            2146,
+            105,
+            43,
+            34,
+            41,
+            110,
+            77
+          ],
+          [
+            74,
+            32,
+            44,
+            85,
+            2253,
+            94,
+            32,
+            8,
+            164,
+            19
+          ],
+          [
+            57,
+            6,
+            45,
+            34,
+            161,
+            2262,
+            17,
+            89,
+            86,
+            38
+          ],
+          [
+            132,
+            15,
+            99,
+            26,
+            33,
+            25,
+            2301,
+            26,
+            134,
+            25
+          ],
+          [
+            54,
+            43,
+            176,
+            31,
+            14,
+            130,
+            16,
+            2264,
+            61,
+            19
+          ],
+          [
+            114,
+            34,
+            219,
+            144,
+            237,
+            71,
+            157,
+            61,
+            1722,
+            34
+          ],
+          [
+            27,
+            29,
+            23,
+            57,
+            15,
+            30,
+            8,
+            39,
+            14,
+            2534
+          ]
+        ],
+        "classification_report": "              precision    recall  f1-score   support\n\n     Class_0       0.63      0.49      0.55      2816\n     Class_1       0.83      0.90      0.86      2782\n     Class_2       0.62      0.54      0.58      2809\n     Class_3       0.76      0.77      0.76      2800\n     Class_4       0.73      0.80      0.77      2805\n     Class_5       0.80      0.81      0.80      2795\n     Class_6       0.79      0.82      0.80      2816\n     Class_7       0.72      0.81      0.76      2808\n     Class_8       0.64      0.62      0.63      2793\n     Class_9       0.89      0.91      0.90      2776\n\n    accuracy                           0.75     28000\n   macro avg       0.74      0.75      0.74     28000\nweighted avg       0.74      0.75      0.74     28000\n"
+      },
+      "model_ranking": [
+        {
+          "model": "bert-base-uncased",
+          "f1_macro": 0.7418481012150298,
+          "parameters_millions": 109.48993,
+          "training_time_hours": 1.946075283355183,
+          "efficiency_score": 0.3812021598342417
+        },
+        {
+          "model": "roberta-base",
+          "f1_macro": 0.7384070115312381,
+          "parameters_millions": 124.653322,
+          "training_time_hours": 2.071131276157167,
+          "efficiency_score": 0.3565235193112908
+        },
+        {
+          "model": "distilbert-base-uncased",
+          "f1_macro": 0.7355049925391429,
+          "parameters_millions": 66.961162,
+          "training_time_hours": 0.6954352257649103,
+          "efficiency_score": 1.0576182587388492
+        }
+      ]
+    },
+    "fine_tuning_details": {
+      "approach": "End-to-end fine-tuning",
+      "classification_head": "Linear layer added on top of [CLS] token",
+      "learning_rate_strategy": "Lower learning rate for pre-trained layers",
+      "regularization": "Dropout, weight decay, early stopping",
+      "sequence_length": 128,
+      "tokenization": "Subword tokenization with model-specific vocabulary"
+    },
+    "computational_requirements": {
+      "memory_per_model": "8-12 GB GPU memory",
+      "training_time_estimate_per_model": "2-3 hours per model",
+      "total_computational_cost_hours": "4.7 GPU hours",
+      "total_computational_cost_seconds": "16966 seconds",
+      "scalability": "Requires significant computational resources for full dataset",
+      "cost_breakdown": {
+        "seconds_total": 16965.51042699814,
+        "minutes_total": 282.75850711663566,
+        "hours_total": 4.712641785277261
+      }
+    }
+  },
+  "final_comparative_analysis": {
+    "cross_approach_comparison": {},
+    "best_models_analysis": {},
+    "statistical_significance": {},
+    "research_insights": {
+      "key_findings": [
+        "Sparse matrix optimization enables traditional ML scalability",
+        "Neural networks benefit significantly from embedding representations",
+        "Transformers achieve state-of-the-art performance with computational cost",
+        "Model-representation compatibility is crucial for optimal performance"
+      ],
+      "methodological_contributions": [
+        "Memory-efficient implementation for large-scale text classification",
+        "Comprehensive comparison across traditional ML, neural networks, and transformers",
+        "Hardware-optimized experimental pipeline",
+        "Architectural compatibility analysis for model selection"
+      ],
+      "practical_implications": [
+        "Traditional ML models remain competitive with proper optimization",
+        "GPU acceleration provides significant speedup for neural approaches",
+        "Transformer fine-tuning requires substantial computational resources",
+        "Model selection should consider both performance and computational constraints"
+      ]
+    },
+    "performance_trends": {}
+  },
+  "comprehensive_summary": {
+    "project_overview": {
+      "title": "Multi-Class Text Classification: A Comparison of Word Representations and ML/NN Models",
+      "objective": "Comprehensive evaluation of traditional ML, neural networks, and transformers for text classification",
+      "dataset": "Question Answer Classification Dataset",
+      "development_approach": "2% stratified sample for development, scalable to full dataset",
+      "total_experiments_conducted": 25,
+      "experimental_duration": "Multiple days of comprehensive experimentation",
+      "hardware_platform": "AMD Ryzen 7 7700, RTX 3060 12GB, optimized for performance"
+    },
+    "experimental_summary": {
+      "total_planned_experiments": 25,
+      "total_completed_experiments": 23,
+      "total_failed_experiments": 0,
+      "success_rate_percentage": 92.0,
+      "approaches_evaluated": [
+        "Traditional ML",
+        "Neural Networks",
+        "Transformers"
+      ],
+      "word_representations_tested": [
+        "BoW",
+        "TF-IDF",
+        "GloVe",
+        "Word2Vec",
+        "Subword Embeddings"
+      ],
+      "evaluation_metrics": [
+        "Accuracy",
+        "F1-macro",
+        "F1-weighted",
+        "Precision",
+        "Recall"
+      ]
+    },
+    "key_findings": {
+      "best_traditional_ml": {
+        "model": "Logistic Regression (Optimized)",
+        "representation": "TFIDF",
+        "f1_macro": 0.6940710823476552
+      },
+      "best_neural_network": {
+        "model": "Bidirectional LSTM",
+        "representation": "GLOVE",
+        "f1_macro": 0.683522506899497
+      },
+      "best_transformer": {
+        "model": "bert-base-uncased",
+        "representation": "Subword Embeddings",
+        "f1_macro": 0.7418481012150298
+      }
+    },
+    "performance_hierarchy": {},
+    "computational_analysis": {},
+    "research_contributions": {},
+    "data_completeness_report": {
+      "validation_timestamp": "2025-09-08T17:39:30.525190",
+      "completeness_percentage": 91.66666666666666,
+      "available_components": 11,
+      "missing_components": 1,
+      "data_quality": "High",
+      "ready_for_paper_writing": true
+    }
+  }
+}

@@ -1,0 +1,72 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Datasets and large artefacts (kept outside the repo)
+datasets/
+data/
+*.csv
+*.parquet
+*.h5
+*.npy
+*.npz
+*.pkl
+*.pickle
+*.bin
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Logs and caches
+*.log
+.cache/
+runs/
+wandb/
+mlruns/
+optuna_studies/
+
+# Embeddings
+glove.*
+word2vec.*
+*.vec
+GoogleNews-vectors-negative300.bin
